@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-brand: #c8a04e;
+  --color-brand-light: #e2c97e;
+  --color-brand-dark: #9a7a2e;
+  --color-surface: var(--theme-surface);
+  --color-surface-raised: var(--theme-surface-raised);
+  --color-surface-hover: var(--theme-surface-hover);
+  --color-border: var(--theme-border);
+  --color-border-hover: var(--theme-border-hover);
+  --color-muted: var(--theme-muted);
+  --color-foreground: var(--theme-foreground);
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
+  --theme-surface: #f0f0f0;
+  --theme-surface-raised: #ffffff;
+  --theme-surface-hover: #e8e8e8;
+  --theme-border: #e0e0e0;
+  --theme-border-hover: #cccccc;
+  --theme-muted: #666666;
+  --theme-foreground: #1a1a1a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #0a0a0a;
+  --foreground: #f5f5f5;
+  --theme-surface: #111111;
+  --theme-surface-raised: #1a1a1a;
+  --theme-surface-hover: #222222;
+  --theme-border: #262626;
+  --theme-border-hover: #333333;
+  --theme-muted: #888888;
+  --theme-foreground: #f5f5f5;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
