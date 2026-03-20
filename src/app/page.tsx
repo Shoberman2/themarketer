@@ -195,11 +195,11 @@ const HOW_IT_WORKS = [
 ];
 
 const STATS = [
-  { value: "8", label: "Ad Templates" },
+  { value: "20", label: "Ad Templates" },
   { value: "8", label: "Platforms" },
   { value: "30-60", label: "Day Plans" },
   { value: "9", label: "Ad Variants per Task" },
-  { value: "3", label: "Style Modes" },
+  { value: "12", label: "Industry Templates" },
   { value: "1", label: "Click to Generate" },
 ];
 
@@ -516,40 +516,139 @@ export default function Home() {
       </section>
 
       {/* ─── AD TEMPLATES ─── */}
-      <section className="max-w-5xl mx-auto">
+      <section className="max-w-6xl mx-auto">
         <div className="text-center mb-10">
           <span className="text-[10px] text-brand font-medium uppercase tracking-widest">
             Professional Templates
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mt-2">
-            8 ad templates, 3 styles, 3 sizes.
+            20 ad templates built from real top performers.
           </h2>
-          <p className="text-muted text-base mt-3 max-w-xl mx-auto">
-            Every ad is rendered server-side as a pixel-perfect PNG using your
-            brand colors. Dark, light, and gradient variants.
+          <p className="text-muted text-base mt-3 max-w-2xl mx-auto">
+            8 core templates for any business, plus 12 industry-specific
+            templates modeled on the highest-performing ad formats in each
+            vertical. Every ad renders as a pixel-perfect PNG in 3 styles.
           </p>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {[
-            { name: "Hero CTA", desc: "Bold headline + call to action" },
-            { name: "Feature Grid", desc: "4 features in a clean layout" },
-            { name: "Testimonial", desc: "Quote-forward social proof" },
-            { name: "Comparison", desc: "Without vs. With your product" },
-            { name: "Stats Banner", desc: "Key numbers front and center" },
-            { name: "Problem → Solution", desc: "Split pain point + fix" },
-            { name: "Pricing Highlight", desc: "Price + features + CTA" },
-            { name: "Social Post", desc: "Platform-native look and feel" },
-          ].map((tmpl) => (
-            <div
-              key={tmpl.name}
-              className="bg-surface-raised border border-border rounded-xl p-4 hover:border-brand/30 transition-all"
-            >
-              <h4 className="text-[13px] font-semibold text-foreground mb-1">
-                {tmpl.name}
-              </h4>
-              <p className="text-[11px] text-muted">{tmpl.desc}</p>
-            </div>
-          ))}
+
+        <div className="mb-6">
+          <h4 className="text-[11px] text-muted font-semibold uppercase tracking-widest mb-3">
+            Core Templates
+          </h4>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { name: "Hero CTA", desc: "Bold headline + call to action" },
+              { name: "Feature Grid", desc: "4 features in a clean layout" },
+              { name: "Testimonial", desc: "Quote-forward social proof" },
+              { name: "Comparison", desc: "Without vs. With your product" },
+              { name: "Stats Banner", desc: "Key numbers front and center" },
+              { name: "Problem → Solution", desc: "Split pain point + fix" },
+              { name: "Pricing Highlight", desc: "Price + features + CTA" },
+              { name: "Social Post", desc: "Platform-native look and feel" },
+            ].map((tmpl) => (
+              <div
+                key={tmpl.name}
+                className="bg-surface-raised border border-border rounded-xl p-4 hover:border-brand/30 transition-all"
+              >
+                <h4 className="text-[13px] font-semibold text-foreground mb-1">
+                  {tmpl.name}
+                </h4>
+                <p className="text-[11px] text-muted">{tmpl.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h4 className="text-[11px] text-muted font-semibold uppercase tracking-widest mb-3">
+            Industry-Specific Templates — Based on Top-Performing Real Ads
+          </h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              {
+                name: "UGC Style",
+                industry: "E-commerce / DTC",
+                desc: "Organic user-generated look with social proof bar, checkmarks, and urgency. Appears in 42% of top-spending ads.",
+              },
+              {
+                name: "Case Study",
+                industry: "B2B / SaaS",
+                desc: "LinkedIn carousel-style card with bold stat and results metrics. LinkedIn carousels achieve 6.60% engagement rate.",
+              },
+              {
+                name: "Before / After",
+                industry: "Health & Beauty",
+                desc: "Split transformation layout. Before/after appears in 29.7% of top beauty ads and dominates fitness creative.",
+              },
+              {
+                name: "Urgency Offer",
+                industry: "Food / Retail",
+                desc: "Countdown-style with dashed offer box and red urgency banner. Time-limited promos see 15-30% more redemptions.",
+              },
+              {
+                name: "App Download",
+                industry: "Fintech / Mobile",
+                desc: "Mobile-first with star rating, feature pills, and download CTA. Video + playable formats dominate UA strategies.",
+              },
+              {
+                name: "Listicle",
+                industry: "Education / Courses",
+                desc: "Numbered tips with FREE GUIDE label. Value-first approach dramatically outperforms direct-sell in education.",
+              },
+              {
+                name: "Trust Badges",
+                industry: "Finance / Insurance",
+                desc: "Shield icons, verification badges, security guarantee. Essential in high-stakes purchase decisions.",
+              },
+              {
+                name: "Property Listing",
+                industry: "Real Estate",
+                desc: "Magazine-style with hero area and spec pills. Video tours drive 403% more inquiries; 9.20% CTR on search.",
+              },
+              {
+                name: "Product Showcase",
+                industry: "Beauty / Fashion",
+                desc: "Clean product-forward with minimal text. Product demos appear in 53.5% of top beauty ads.",
+              },
+              {
+                name: "Food Visual",
+                industry: "Food & Restaurant",
+                desc: "Warm-toned with sensory gradients and warm-color CTA. Reds/oranges stimulate appetite; avoids blue.",
+              },
+              {
+                name: "Video Hook",
+                industry: "All Verticals",
+                desc: "Paused-video look with play button and engagement indicators. Video ads achieve 0.98% CTR on Facebook.",
+              },
+              {
+                name: "Travel Escape",
+                industry: "Travel / Hospitality",
+                desc: "Aspirational full-bleed with experience pills and booking bar. 32% of consumers book from TikTok discovery.",
+              },
+              {
+                name: "Automotive",
+                industry: "Automotive",
+                desc: "Cinematic dark layout with performance specs. 75% of car buyers are heavily influenced by video ads.",
+              },
+            ].map((tmpl) => (
+              <div
+                key={tmpl.name}
+                className="bg-surface-raised border border-border rounded-xl p-4 hover:border-brand/30 transition-all"
+              >
+                <div className="flex items-center justify-between mb-1.5">
+                  <h4 className="text-[13px] font-semibold text-foreground">
+                    {tmpl.name}
+                  </h4>
+                  <span className="text-[9px] text-brand font-medium uppercase tracking-wider">
+                    {tmpl.industry}
+                  </span>
+                </div>
+                <p className="text-[11px] text-muted leading-relaxed">
+                  {tmpl.desc}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

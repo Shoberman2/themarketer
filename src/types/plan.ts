@@ -10,7 +10,20 @@ export type AdTemplate =
   | "stats-banner"
   | "problem-solution"
   | "pricing-highlight"
-  | "social-post";
+  | "social-post"
+  | "ugc-style"
+  | "case-study"
+  | "before-after"
+  | "urgency-offer"
+  | "app-download"
+  | "listicle"
+  | "trust-badges"
+  | "property-listing"
+  | "product-showcase"
+  | "food-visual"
+  | "video-hook"
+  | "travel-escape"
+  | "automotive";
 
 export interface ImplementationGuide {
   steps: string[];
