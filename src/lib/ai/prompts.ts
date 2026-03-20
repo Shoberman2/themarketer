@@ -173,7 +173,7 @@ export function buildPlanPrompt(
     prompt += `\n\nSocial media profiles:\n${socialProfiles}\nTailor content to these audience sizes and engagement rates.`;
   }
 
-  prompt += `\n\nAlso include 2-3 influencer recommendations per selected platform in the influencerRecommendations array.`;
+  prompt += `\n\nAlso include 3-5 influencer recommendations per selected platform in the influencerRecommendations array. Recommend REAL influencers with actual follower counts. Include a mix of macro (500K+), mid-tier (100K-500K), and micro (10K-100K) influencers.`;
 
   return prompt;
 }

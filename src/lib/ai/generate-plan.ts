@@ -9,6 +9,7 @@ import {
   buildPlanPrompt,
   buildExtendPrompt,
 } from "./prompts";
+import { getMatchingInfluencers } from "@/lib/influencers/database";
 import { nanoid } from "nanoid";
 
 interface PlanResponse {
@@ -69,6 +70,33 @@ export async function generateMarketingPlan(
     };
   });
 
+  // Merge AI-generated influencers with curated database matches
+  const curatedInfluencers = getMatchingInfluencers(
+    analysis.brand.industry,
+    platforms,
+    15
+  );
+  const aiInfluencers = response.influencerRecommendations || [];
+
+  // Deduplicate by name (prefer curated since they have richer data)
+  const seenNames = new Set<string>();
+  const mergedInfluencers: InfluencerRecommendation[] = [];
+
+  for (const inf of curatedInfluencers) {
+    const key = inf.name.toLowerCase();
+    if (!seenNames.has(key)) {
+      seenNames.add(key);
+      mergedInfluencers.push(inf);
+    }
+  }
+  for (const inf of aiInfluencers) {
+    const key = inf.name.toLowerCase();
+    if (!seenNames.has(key)) {
+      seenNames.add(key);
+      mergedInfluencers.push(inf);
+    }
+  }
+
   return {
     id: planId,
     url,
@@ -77,7 +105,7 @@ export async function generateMarketingPlan(
     weeklyThemes: response.weeklyThemes,
     targetPlatforms: platforms,
     socialProfiles,
-    influencerRecommendations: response.influencerRecommendations,
+    influencerRecommendations: mergedInfluencers,
     totalDays: 30,
   };
 }
