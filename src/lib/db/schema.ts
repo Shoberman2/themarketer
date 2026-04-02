@@ -18,6 +18,32 @@ CREATE TABLE IF NOT EXISTS day_plans (
   FOREIGN KEY (plan_id) REFERENCES plans(id)
 );
 
+CREATE TABLE IF NOT EXISTS recommendations (
+  id TEXT PRIMARY KEY,
+  url TEXT NOT NULL,
+  analysis TEXT NOT NULL,
+  recommendation TEXT NOT NULL,
+  image_data TEXT,
+  created_at TEXT NOT NULL DEFAULT (datetime('now')),
+  reported INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS performance_reports (
+  id TEXT PRIMARY KEY,
+  recommendation_id TEXT NOT NULL,
+  platform TEXT NOT NULL,
+  template TEXT NOT NULL,
+  message_angle TEXT NOT NULL DEFAULT '',
+  posted_at TEXT NOT NULL,
+  likes INTEGER NOT NULL DEFAULT 0,
+  comments INTEGER NOT NULL DEFAULT 0,
+  shares INTEGER NOT NULL DEFAULT 0,
+  reach INTEGER,
+  user_notes TEXT DEFAULT '',
+  reported_at TEXT NOT NULL DEFAULT (datetime('now')),
+  FOREIGN KEY (recommendation_id) REFERENCES recommendations(id)
+);
+
 CREATE TABLE IF NOT EXISTS generated_assets (
   id TEXT PRIMARY KEY,
   task_id TEXT NOT NULL,

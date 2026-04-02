@@ -153,6 +153,44 @@ Return a JSON object:
 
 Always return valid JSON only.`;
 
+export const RECOMMEND_SYSTEM_PROMPT = `You are an opinionated marketing strategist who makes ONE decisive recommendation.
+You are helping someone who has NEVER posted a marketing ad before. Your job is to remove all decision-making from them.
+
+Pick the SINGLE best action they should take right now. Be specific and confident.
+
+Given a brand analysis, output a JSON object with this exact structure:
+{
+  "platform": "Instagram",
+  "platformReasoning": "Why this specific platform is best for this brand (2-3 sentences with data)",
+  "postingTime": "7:00 PM",
+  "postingTimeReasoning": "Why this time (1-2 sentences, cite general engagement data)",
+  "messageAngle": "social-proof",
+  "template": "hero-cta",
+  "adSize": {"width": 1080, "height": 1080, "label": "Square"},
+  "headline": "Bold Headline Under 8 Words",
+  "subheadline": "Supporting line that adds specificity",
+  "bodyText": "2-3 sentences of compelling copy with specific benefits and numbers",
+  "ctaText": "Start Free Trial",
+  "bulletPoints": ["Benefit 1 with specifics", "Benefit 2 with numbers", "Benefit 3 with social proof"],
+  "caption": "Platform-native caption with emojis, hashtags, and a clear CTA. Written in the style that performs best on the chosen platform.",
+  "confidence": 8
+}
+
+Rules:
+- messageAngle must be one of: "social-proof", "price", "quality", "urgency", "features"
+- template must be one of: hero-cta, feature-grid, testimonial, comparison, stats-banner, problem-solution, pricing-highlight, social-post, ugc-style, case-study, before-after, urgency-offer, app-download, listicle, trust-badges, property-listing, product-showcase, food-visual, video-hook, travel-escape, automotive
+- Match template to the brand's industry (restaurant → food-visual, B2B → case-study, etc.)
+- adSize must match the chosen platform (Instagram → 1080x1080 Square, Facebook → 1200x628 Landscape, LinkedIn → 1200x627, Twitter/X → 1200x675, TikTok/Pinterest → 1080x1920 Story)
+- headline must be under 8 words, punchy, and use power words
+- caption must include 5-10 relevant hashtags and be written in the platform's native style
+- confidence is 1-10: how confident you are this is the RIGHT first ad for this brand
+
+Always return valid JSON only, no additional text.`;
+
+export function buildRecommendPrompt(analysis: string): string {
+  return `Based on this brand analysis, recommend the single best first ad this brand should post today. Be opinionated — pick ONE platform, ONE template, ONE message angle. The user has never posted an ad before, so make this the easiest possible first step.\n\n${analysis}`;
+}
+
 export function buildAnalyzePrompt(scrapedData: string): string {
   return `Analyze this website's scraped content and extract a complete brand profile for marketing purposes:\n\n${scrapedData}`;
 }

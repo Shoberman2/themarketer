@@ -1,6 +1,8 @@
 import { getDb } from "./index";
 import { WebsiteAnalysis } from "@/types/analysis";
 import { MarketingPlan, DayPlan } from "@/types/plan";
+import { AdRecommendation } from "@/types/recommendation";
+import { PerformanceReport, computeEngagementRate } from "@/types/performance";
 import { nanoid } from "nanoid";
 
 export function savePlan(
@@ -186,6 +188,189 @@ export function getGeneratedAssets(
       "SELECT id, variant_name, size_label, image_data FROM generated_assets WHERE plan_id = ? AND task_id = ?"
     )
     .all(planId, taskId) as { id: string; variant_name: string; size_label: string; image_data: string }[];
+}
+
+// --- Recommendations ---
+
+export function saveRecommendation(
+  url: string,
+  analysis: WebsiteAnalysis,
+  recommendation: AdRecommendation,
+  imageData: string | null
+): string {
+  const db = getDb();
+  const id = nanoid(12);
+  db.prepare(
+    "INSERT INTO recommendations (id, url, analysis, recommendation, image_data) VALUES (?, ?, ?, ?, ?)"
+  ).run(id, url, JSON.stringify(analysis), JSON.stringify(recommendation), imageData);
+  return id;
+}
+
+export function getUnreportedRecommendation(): {
+  id: string;
+  url: string;
+  recommendation: AdRecommendation;
+  imageData: string | null;
+  createdAt: string;
+} | null {
+  const db = getDb();
+  const row = db
+    .prepare("SELECT * FROM recommendations WHERE reported = 0 ORDER BY created_at DESC LIMIT 1")
+    .get() as { id: string; url: string; recommendation: string; image_data: string | null; created_at: string } | undefined;
+  if (!row) return null;
+  return {
+    id: row.id,
+    url: row.url,
+    recommendation: JSON.parse(row.recommendation),
+    imageData: row.image_data,
+    createdAt: row.created_at,
+  };
+}
+
+export function markRecommendationReported(id: string): void {
+  const db = getDb();
+  db.prepare("UPDATE recommendations SET reported = 1 WHERE id = ?").run(id);
+}
+
+// --- Performance Reports ---
+
+export function savePerformanceReport(report: {
+  recommendationId: string;
+  platform: string;
+  template: string;
+  messageAngle: string;
+  postedAt: string;
+  likes: number;
+  comments: number;
+  shares: number;
+  reach: number | null;
+  userNotes: string;
+}): string {
+  const db = getDb();
+  const id = nanoid(12);
+  db.prepare(
+    `INSERT INTO performance_reports (id, recommendation_id, platform, template, message_angle, posted_at, likes, comments, shares, reach, user_notes)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+  ).run(
+    id,
+    report.recommendationId,
+    report.platform,
+    report.template,
+    report.messageAngle,
+    report.postedAt,
+    report.likes,
+    report.comments,
+    report.shares,
+    report.reach,
+    report.userNotes
+  );
+  markRecommendationReported(report.recommendationId);
+  return id;
+}
+
+export function updatePerformanceReport(
+  id: string,
+  updates: { likes?: number; comments?: number; shares?: number; reach?: number | null; userNotes?: string }
+): void {
+  const db = getDb();
+  const fields: string[] = [];
+  const values: (number | string | null)[] = [];
+  if (updates.likes !== undefined) { fields.push("likes = ?"); values.push(updates.likes); }
+  if (updates.comments !== undefined) { fields.push("comments = ?"); values.push(updates.comments); }
+  if (updates.shares !== undefined) { fields.push("shares = ?"); values.push(updates.shares); }
+  if (updates.reach !== undefined) { fields.push("reach = ?"); values.push(updates.reach); }
+  if (updates.userNotes !== undefined) { fields.push("user_notes = ?"); values.push(updates.userNotes); }
+  if (fields.length === 0) return;
+  values.push(id);
+  db.prepare(`UPDATE performance_reports SET ${fields.join(", ")} WHERE id = ?`).run(...values);
+}
+
+export function listPerformanceReports(): PerformanceReport[] {
+  const db = getDb();
+  const rows = db
+    .prepare("SELECT * FROM performance_reports ORDER BY reported_at DESC")
+    .all() as {
+    id: string;
+    recommendation_id: string;
+    platform: string;
+    template: string;
+    message_angle: string;
+    posted_at: string;
+    likes: number;
+    comments: number;
+    shares: number;
+    reach: number | null;
+    user_notes: string;
+    reported_at: string;
+  }[];
+
+  return rows.map((row) => ({
+    id: row.id,
+    recommendationId: row.recommendation_id,
+    platform: row.platform,
+    template: row.template,
+    messageAngle: row.message_angle,
+    postedAt: row.posted_at,
+    likes: row.likes,
+    comments: row.comments,
+    shares: row.shares,
+    reach: row.reach,
+    userNotes: row.user_notes,
+    reportedAt: row.reported_at,
+    engagementRate: computeEngagementRate(row.likes, row.comments, row.shares, row.reach),
+  }));
+}
+
+export function getRecentPerformanceHistory(limit: number, url?: string): PerformanceReport[] {
+  const db = getDb();
+  let query = `
+    SELECT pr.* FROM performance_reports pr
+    JOIN recommendations r ON r.id = pr.recommendation_id
+  `;
+  const params: (string | number)[] = [];
+  if (url) {
+    query += " WHERE r.url = ?";
+    params.push(url);
+  }
+  query += " ORDER BY pr.reported_at DESC LIMIT ?";
+  params.push(limit);
+
+  const rows = db.prepare(query).all(...params) as {
+    id: string;
+    recommendation_id: string;
+    platform: string;
+    template: string;
+    message_angle: string;
+    posted_at: string;
+    likes: number;
+    comments: number;
+    shares: number;
+    reach: number | null;
+    user_notes: string;
+    reported_at: string;
+  }[];
+
+  return rows.map((row) => ({
+    id: row.id,
+    recommendationId: row.recommendation_id,
+    platform: row.platform,
+    template: row.template,
+    messageAngle: row.message_angle,
+    postedAt: row.posted_at,
+    likes: row.likes,
+    comments: row.comments,
+    shares: row.shares,
+    reach: row.reach,
+    userNotes: row.user_notes,
+    reportedAt: row.reported_at,
+    engagementRate: computeEngagementRate(row.likes, row.comments, row.shares, row.reach),
+  }));
+}
+
+export function getPerformanceReportCount(): number {
+  const db = getDb();
+  const row = db.prepare("SELECT COUNT(*) as count FROM performance_reports").get() as { count: number };
+  return row.count;
 }
 
 export function appendDaysToPlan(
