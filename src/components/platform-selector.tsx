@@ -63,7 +63,7 @@ export function PlatformSelector({
       <button
         onClick={() => onSelect(selected)}
         disabled={selected.length === 0}
-        className="w-full py-3 bg-brand text-black font-semibold rounded-xl hover:bg-brand-light transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="w-full py-3 bg-brand text-white font-semibold rounded-xl hover:bg-brand-light transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Continue with {selected.length} platform
         {selected.length !== 1 ? "s" : ""}

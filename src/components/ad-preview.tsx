@@ -34,7 +34,7 @@ export function AdPreview({
         <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
           <button
             onClick={handleDownload}
-            className="px-5 py-2 bg-brand text-black rounded-lg font-semibold text-[13px] hover:bg-brand-light transition-colors"
+            className="px-5 py-2 bg-brand text-white rounded-lg font-semibold text-[13px] hover:bg-brand-light transition-colors"
           >
             Download PNG
           </button>

@@ -30,15 +30,16 @@ const AnalysisSchema = z.object({
 const RequestSchema = z.object({
   analysis: AnalysisSchema,
   url: z.string().optional(),
+  brandId: z.string().optional(),
 });
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { analysis, url } = RequestSchema.parse(body);
+    const { analysis, url, brandId } = RequestSchema.parse(body);
 
-    // Fetch performance history scoped to this URL
-    const history = getRecentPerformanceHistory(10, url);
+    // Fetch performance history scoped to this brand
+    const history = getRecentPerformanceHistory(10, brandId);
 
     const recommendation = await generateRecommendation(analysis, history);
 
@@ -76,7 +77,8 @@ export async function POST(request: NextRequest) {
       url || "",
       analysis,
       recommendation,
-      imageData
+      imageData,
+      brandId
     );
 
     return NextResponse.json({ recommendation, imageData, recommendationId });

@@ -18,12 +18,13 @@ const RequestSchema = z.object({
       })
     )
     .optional(),
+  brandId: z.string().optional(),
 });
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { url, analysis, platforms, socialProfiles } =
+    const { url, analysis, platforms, socialProfiles, brandId } =
       RequestSchema.parse(body);
     const typedAnalysis = analysis as WebsiteAnalysis;
 
@@ -33,7 +34,7 @@ export async function POST(request: NextRequest) {
       platforms,
       socialProfiles
     );
-    savePlan(plan, typedAnalysis);
+    savePlan(plan, typedAnalysis, brandId);
 
     return NextResponse.json({ plan });
   } catch (error) {

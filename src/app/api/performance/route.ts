@@ -13,6 +13,7 @@ const CreateSchema = z.object({
   shares: z.number().int().min(0),
   reach: z.number().int().min(0).nullable().default(null),
   userNotes: z.string().default(""),
+  brandId: z.string().optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -28,10 +29,12 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const reports = listPerformanceReports();
-    const totalCount = getPerformanceReportCount();
+    const { searchParams } = new URL(request.url);
+    const brandId = searchParams.get("brandId") || undefined;
+    const reports = listPerformanceReports(brandId);
+    const totalCount = getPerformanceReportCount(brandId);
     return NextResponse.json({ reports, totalCount });
   } catch (error) {
     console.error("List performance reports error:", error);

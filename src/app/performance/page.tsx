@@ -64,7 +64,9 @@ export default function PerformancePage() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch("/api/performance");
+        const brandId = localStorage.getItem("activeBrandId");
+        const params = brandId ? `?brandId=${brandId}` : "";
+        const res = await fetch(`/api/performance${params}`);
         if (res.ok) {
           const data = await res.json();
           setReports(data.reports);
@@ -97,7 +99,7 @@ export default function PerformancePage() {
         </p>
         <a
           href="/"
-          className="inline-block mt-4 px-6 py-2.5 bg-brand text-black text-sm font-semibold rounded-xl hover:bg-brand-light transition-all"
+          className="inline-block mt-4 px-6 py-2.5 bg-brand text-white text-sm font-semibold rounded-xl hover:bg-brand-light transition-all"
         >
           Generate your first ad
         </a>
@@ -111,16 +113,30 @@ export default function PerformancePage() {
   return (
     <div className="max-w-4xl mx-auto py-12 space-y-10">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-semibold text-foreground">Performance</h1>
-        <p className="text-sm text-muted mt-1">
-          {totalCount} report{totalCount !== 1 ? "s" : ""} tracked
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="font-serif italic text-2xl text-foreground">Performance</h1>
+          <p className="text-sm text-muted mt-1">
+            {totalCount} report{totalCount !== 1 ? "s" : ""} tracked
           {!showInsights && totalCount < 30 && (
             <span className="text-muted/60">
               {" "}· {30 - totalCount} more to unlock AI pattern insights
             </span>
           )}
         </p>
+        </div>
+        {totalCount > 0 && (
+          <button
+            onClick={() => {
+              const brandId = localStorage.getItem("activeBrandId");
+              const params = brandId ? `?brandId=${brandId}` : "";
+              window.open(`/report${params}`, "_blank");
+            }}
+            className="px-4 py-2 text-xs font-medium border border-border text-foreground hover:bg-surface transition-colors"
+          >
+            Export Report
+          </button>
+        )}
       </div>
 
       {/* Pattern cards — only at 30+ reports */}

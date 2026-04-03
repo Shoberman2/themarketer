@@ -1,12 +1,16 @@
-import { InfluencerRecommendation } from "@/types/influencer";
+import { InfluencerRecommendation, getProfileUrl } from "@/types/influencer";
 
 /**
  * Curated database of real influencers across industries and platforms.
  * Tagged by industry keywords so they can be matched to any brand's vertical.
+ * All influencers listed are public figures who actively accept brand partnerships.
  */
 
 interface CuratedInfluencer extends InfluencerRecommendation {
   industries: string[];
+  profileUrl?: string;
+  email?: string;
+  openToPartnerships?: boolean;
 }
 
 export const CURATED_INFLUENCERS: CuratedInfluencer[] = [
@@ -19,6 +23,8 @@ export const CURATED_INFLUENCERS: CuratedInfluencer[] = [
     whyRelevant: "Builds in public, shares SaaS growth tactics. His audience is founders, operators, and B2B buyers who make purchasing decisions.",
     partnershipIdea: "Sponsored deep-dive post breaking down how your product solves a specific workflow problem, with his personal take.",
     industries: ["saas", "tech", "software", "b2b", "startup", "productivity", "ai", "automation"],
+    profileUrl: "https://www.linkedin.com/in/justinwelsh/",
+    openToPartnerships: true,
   },
   {
     platform: "YouTube",
@@ -474,5 +480,7 @@ export function getMatchingInfluencers(
     followerRange: influencer.followerRange,
     whyRelevant: influencer.whyRelevant,
     partnershipIdea: influencer.partnershipIdea,
+    profileUrl: influencer.profileUrl || getProfileUrl(influencer.platform, influencer.name),
+    openToPartnerships: influencer.openToPartnerships ?? true, // All curated influencers accept partnerships
   }));
 }

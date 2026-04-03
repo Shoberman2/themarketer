@@ -125,7 +125,7 @@ export function FallbackForm({
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-3 bg-brand text-black text-sm font-semibold rounded-xl hover:bg-brand-light transition-all disabled:opacity-30"
+          className="w-full py-3 bg-brand text-white text-sm font-semibold rounded-xl hover:bg-brand-light transition-all disabled:opacity-30"
         >
           {isLoading ? (
             <span className="flex items-center justify-center gap-2">

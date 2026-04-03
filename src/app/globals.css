@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
 @import "tailwindcss";
 
 @theme inline {
-  --color-brand: #c8a04e;
-  --color-brand-light: #e2c97e;
-  --color-brand-dark: #9a7a2e;
+  --color-brand: #2563eb;
+  --color-brand-light: #3b82f6;
+  --color-brand-dark: #1d4ed8;
   --color-surface: var(--theme-surface);
   --color-surface-raised: var(--theme-surface-raised);
   --color-surface-hover: var(--theme-surface-hover);
@@ -14,35 +15,54 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --theme-surface: #f0f0f0;
-  --theme-surface-raised: #ffffff;
-  --theme-surface-hover: #e8e8e8;
-  --theme-border: #e0e0e0;
-  --theme-border-hover: #cccccc;
-  --theme-muted: #666666;
-  --theme-foreground: #1a1a1a;
+  --background: #FFFFFF;
+  --foreground: #0A0A0A;
+  --theme-surface: #F8F8F8;
+  --theme-surface-raised: #FFFFFF;
+  --theme-surface-hover: #F3F3F3;
+  --theme-border: #E8E8E8;
+  --theme-border-hover: #D4D4D4;
+  --theme-muted: #6B6B6B;
+  --theme-foreground: #0A0A0A;
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #f5f5f5;
-  --theme-surface: #111111;
-  --theme-surface-raised: #1a1a1a;
-  --theme-surface-hover: #222222;
-  --theme-border: #262626;
-  --theme-border-hover: #333333;
-  --theme-muted: #888888;
-  --theme-foreground: #f5f5f5;
+  --background: #09090B;
+  --foreground: #FAFAFA;
+  --theme-surface: #111113;
+  --theme-surface-raised: #18181B;
+  --theme-surface-hover: #222225;
+  --theme-border: #27272A;
+  --theme-border-hover: #3F3F46;
+  --theme-muted: #71717A;
+  --theme-foreground: #FAFAFA;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Modern transitions */
+button, a {
+  transition: all 0.15s ease-out;
+}
+
+/* Instrument Serif for display text */
+.font-serif {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+/* Subtle hover lift for interactive cards */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 @layer utilities {

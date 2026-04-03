@@ -44,24 +44,49 @@ export default function Home() {
   const [recommendationId, setRecommendationId] = useState<string | null>(null);
   const [todayPlan, setTodayPlan] = useState<{ plan: MarketingPlan; dayIndex: number } | null>(null);
   const [slowWarning, setSlowWarning] = useState(false);
+  const [activeBrandId, setActiveBrandId] = useState<string | null>(null);
 
-  // Check for existing plans on mount
+  // Check for existing plans scoped to active brand
   useEffect(() => {
+    const brandId = localStorage.getItem("activeBrandId");
+    setActiveBrandId(brandId);
+
     async function checkExistingPlans() {
       try {
+        // If no active brand, check if any brands exist
+        if (!brandId) {
+          const brandsRes = await fetch("/api/brands");
+          if (brandsRes.ok) {
+            const { brands } = await brandsRes.json();
+            if (brands && brands.length > 0) {
+              // Auto-select the first brand
+              const first = brands[0];
+              localStorage.setItem("activeBrandId", first.id);
+              setActiveBrandId(first.id);
+              // Re-run with the selected brand
+              window.location.reload();
+              return;
+            }
+          }
+          setFlowState("first-run");
+          return;
+        }
+
         const res = await fetch("/api/plans");
         if (!res.ok) {
           setFlowState("first-run");
           return;
         }
         const { plans } = await res.json();
-        if (!plans || plans.length === 0) {
+        // Filter to active brand's plans
+        const brandPlans = plans?.filter((p: { brandId: string }) => p.brandId === brandId) || [];
+        if (brandPlans.length === 0) {
           setFlowState("first-run");
           return;
         }
 
-        // Fetch the most recent plan
-        const latest = plans[0];
+        // Fetch the most recent plan for this brand
+        const latest = brandPlans[0];
         const planRes = await fetch(`/api/plans/${latest.id}`);
         if (!planRes.ok) {
           setFlowState("first-run");
@@ -119,9 +144,23 @@ export default function Home() {
       setAnalysis(analysisData);
       setStep(2);
 
+      // Auto-create or find brand
+      const brandRes = await fetch("/api/brands", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: inputUrl, analysis: analysisData }),
+      });
+      let brandId = activeBrandId;
+      if (brandRes.ok) {
+        const { brandId: newBrandId } = await brandRes.json();
+        brandId = newBrandId;
+        localStorage.setItem("activeBrandId", newBrandId);
+        setActiveBrandId(newBrandId);
+      }
+
       // Step 2: Recommend
       setFlowState("recommending");
-      await fetchRecommendation(analysisData);
+      await fetchRecommendation(analysisData, brandId);
       clearTimeout(slowTimer);
     } catch (err) {
       clearTimeout(slowTimer);
@@ -147,11 +186,11 @@ export default function Home() {
     }
   }
 
-  async function fetchRecommendation(analysisData: WebsiteAnalysis) {
+  async function fetchRecommendation(analysisData: WebsiteAnalysis, brandId?: string | null) {
     const recRes = await fetch("/api/recommend", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ analysis: analysisData, url }),
+      body: JSON.stringify({ analysis: analysisData, url, brandId: brandId || undefined }),
     });
 
     if (!recRes.ok) {
@@ -182,6 +221,7 @@ export default function Home() {
           url,
           analysis,
           platforms: ALL_PLATFORMS,
+          brandId: activeBrandId || undefined,
         }),
       });
 
@@ -195,7 +235,7 @@ export default function Home() {
         `plan-${plan.id}`,
         JSON.stringify({ plan, analysis })
       );
-      router.push(`/plan/${plan.id}`);
+      router.push(`/campaign/${plan.id}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
       setFlowState("recommend");
@@ -334,8 +374,8 @@ export default function Home() {
 
           <div className="flex gap-3">
             <button
-              onClick={() => router.push(`/plan/${plan.id}`)}
-              className="flex-1 py-3 bg-brand text-black text-sm font-semibold rounded-xl hover:bg-brand-light transition-all"
+              onClick={() => router.push(`/campaign/${plan.id}`)}
+              className="flex-1 py-3 bg-brand text-white text-sm font-semibold rounded-xl hover:bg-brand-light transition-all"
             >
               See Full Plan
             </button>
@@ -375,16 +415,13 @@ export default function Home() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[80vh] gap-14">
         <div className="text-center space-y-6 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/10 border border-brand/20 mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
-            <span className="text-[11px] text-brand font-medium uppercase tracking-widest">
-              AI-Powered Marketing
-            </span>
+          <div className="text-[11px] text-muted uppercase tracking-[3px] mb-2">
+            AI Marketing Platform
           </div>
-          <h1 className="text-5xl sm:text-7xl font-bold tracking-tight leading-[1.05]">
+          <h1 className="font-serif italic text-5xl sm:text-7xl tracking-tight leading-[1.05]">
             <span className="text-foreground">Your first ad in</span>
             <br />
-            <span className="text-brand">60 seconds.</span>
+            <span className="text-foreground">60 seconds.</span>
           </h1>
           <p className="text-lg sm:text-xl text-muted max-w-xl mx-auto leading-relaxed">
             Paste your website. We&apos;ll tell you exactly what to post and where.

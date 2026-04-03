@@ -152,7 +152,7 @@ export default function PlanPage() {
           <button
             onClick={handleExtend}
             disabled={extending}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-brand text-black font-semibold rounded-xl hover:bg-brand-light transition-colors disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-brand text-white font-semibold rounded-xl hover:bg-brand-light transition-colors disabled:opacity-50"
           >
             {extending ? (
               <>

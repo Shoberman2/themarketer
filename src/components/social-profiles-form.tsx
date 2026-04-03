@@ -92,7 +92,7 @@ export function SocialProfilesForm({
         </button>
         <button
           onClick={handleSubmit}
-          className="flex-1 py-3 bg-brand text-black font-semibold rounded-xl hover:bg-brand-light transition-colors"
+          className="flex-1 py-3 bg-brand text-white font-semibold rounded-xl hover:bg-brand-light transition-colors"
         >
           Continue
         </button>

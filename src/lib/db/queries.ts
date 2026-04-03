@@ -3,15 +3,104 @@ import { WebsiteAnalysis } from "@/types/analysis";
 import { MarketingPlan, DayPlan } from "@/types/plan";
 import { AdRecommendation } from "@/types/recommendation";
 import { PerformanceReport, computeEngagementRate } from "@/types/performance";
+import { Brand, extractDomain } from "@/types/brand";
 import { nanoid } from "nanoid";
+
+// --- Brands ---
+
+export function createBrand(url: string, analysis: WebsiteAnalysis): string {
+  const db = getDb();
+  const domain = extractDomain(url);
+  const existing = findBrandByDomain(domain);
+  if (existing) {
+    updateBrandAnalysis(existing.id, url, analysis);
+    return existing.id;
+  }
+  const id = nanoid(12);
+  db.prepare(
+    `INSERT INTO brands (id, name, url, domain, primary_color, secondary_color, accent_color, industry, tone, analysis)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+  ).run(
+    id,
+    analysis.brand.name,
+    url,
+    domain,
+    analysis.brand.primaryColor,
+    analysis.brand.secondaryColor,
+    analysis.brand.accentColor,
+    analysis.brand.industry,
+    analysis.brand.tone,
+    JSON.stringify(analysis)
+  );
+  return id;
+}
+
+export function findBrandByDomain(domain: string): Brand | null {
+  const db = getDb();
+  const row = db.prepare("SELECT * FROM brands WHERE domain = ?").get(domain) as {
+    id: string; name: string; url: string; domain: string;
+    primary_color: string; secondary_color: string; accent_color: string;
+    industry: string; tone: string; created_at: string;
+  } | undefined;
+  if (!row) return null;
+  return {
+    id: row.id, name: row.name, url: row.url, domain: row.domain,
+    primaryColor: row.primary_color, secondaryColor: row.secondary_color,
+    accentColor: row.accent_color, industry: row.industry, tone: row.tone,
+    createdAt: row.created_at,
+  };
+}
+
+export function updateBrandAnalysis(brandId: string, url: string, analysis: WebsiteAnalysis): void {
+  const db = getDb();
+  db.prepare(
+    `UPDATE brands SET name = ?, url = ?, primary_color = ?, secondary_color = ?, accent_color = ?, industry = ?, tone = ?, analysis = ? WHERE id = ?`
+  ).run(
+    analysis.brand.name, url,
+    analysis.brand.primaryColor, analysis.brand.secondaryColor, analysis.brand.accentColor,
+    analysis.brand.industry, analysis.brand.tone, JSON.stringify(analysis), brandId
+  );
+}
+
+export function listBrands(): Brand[] {
+  const db = getDb();
+  const rows = db.prepare("SELECT * FROM brands ORDER BY created_at DESC").all() as {
+    id: string; name: string; url: string; domain: string;
+    primary_color: string; secondary_color: string; accent_color: string;
+    industry: string; tone: string; created_at: string;
+  }[];
+  return rows.map((row) => ({
+    id: row.id, name: row.name, url: row.url, domain: row.domain,
+    primaryColor: row.primary_color, secondaryColor: row.secondary_color,
+    accentColor: row.accent_color, industry: row.industry, tone: row.tone,
+    createdAt: row.created_at,
+  }));
+}
+
+export function getBrand(brandId: string): Brand | null {
+  const db = getDb();
+  const row = db.prepare("SELECT * FROM brands WHERE id = ?").get(brandId) as {
+    id: string; name: string; url: string; domain: string;
+    primary_color: string; secondary_color: string; accent_color: string;
+    industry: string; tone: string; created_at: string;
+  } | undefined;
+  if (!row) return null;
+  return {
+    id: row.id, name: row.name, url: row.url, domain: row.domain,
+    primaryColor: row.primary_color, secondaryColor: row.secondary_color,
+    accentColor: row.accent_color, industry: row.industry, tone: row.tone,
+    createdAt: row.created_at,
+  };
+}
 
 export function savePlan(
   plan: MarketingPlan,
-  analysis: WebsiteAnalysis
+  analysis: WebsiteAnalysis,
+  brandId?: string
 ): void {
   const db = getDb();
   const insertPlan = db.prepare(
-    "INSERT OR REPLACE INTO plans (id, url, analysis, strategy, created_at, target_platforms, social_profiles, influencer_recommendations, total_days) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    "INSERT OR REPLACE INTO plans (id, url, analysis, strategy, created_at, target_platforms, social_profiles, influencer_recommendations, total_days, brand_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
   );
   const insertDay = db.prepare(
     "INSERT OR REPLACE INTO day_plans (id, plan_id, day_index, date, theme, tasks, status) VALUES (?, ?, ?, ?, ?, ?, ?)"
@@ -27,7 +116,8 @@ export function savePlan(
       JSON.stringify(plan.targetPlatforms || []),
       JSON.stringify(plan.socialProfiles || []),
       JSON.stringify(plan.influencerRecommendations || []),
-      plan.totalDays || 30
+      plan.totalDays || 30,
+      brandId || ""
     );
 
     for (const day of plan.days) {
@@ -122,16 +212,24 @@ function safeJsonParse<T>(value: string | undefined, fallback: T): T {
   }
 }
 
-export function listPlans(): {
+export function listPlans(brandId?: string): {
   id: string;
   url: string;
   createdAt: string;
   brandName: string;
+  brandId: string;
 }[] {
   const db = getDb();
-  const rows = db
-    .prepare("SELECT id, url, analysis, created_at FROM plans ORDER BY created_at DESC")
-    .all() as { id: string; url: string; analysis: string; created_at: string }[];
+  let query = "SELECT id, url, analysis, created_at, brand_id FROM plans";
+  const params: string[] = [];
+  if (brandId) {
+    query += " WHERE brand_id = ?";
+    params.push(brandId);
+  }
+  query += " ORDER BY created_at DESC";
+  const rows = db.prepare(query).all(...params) as {
+    id: string; url: string; analysis: string; created_at: string; brand_id: string;
+  }[];
 
   return rows.map((row) => {
     const analysis = JSON.parse(row.analysis) as WebsiteAnalysis;
@@ -140,6 +238,7 @@ export function listPlans(): {
       url: row.url,
       createdAt: row.created_at,
       brandName: analysis.brand.name,
+      brandId: row.brand_id,
     };
   });
 }
@@ -196,17 +295,18 @@ export function saveRecommendation(
   url: string,
   analysis: WebsiteAnalysis,
   recommendation: AdRecommendation,
-  imageData: string | null
+  imageData: string | null,
+  brandId?: string
 ): string {
   const db = getDb();
   const id = nanoid(12);
   db.prepare(
-    "INSERT INTO recommendations (id, url, analysis, recommendation, image_data) VALUES (?, ?, ?, ?, ?)"
-  ).run(id, url, JSON.stringify(analysis), JSON.stringify(recommendation), imageData);
+    "INSERT INTO recommendations (id, url, analysis, recommendation, image_data, brand_id) VALUES (?, ?, ?, ?, ?, ?)"
+  ).run(id, url, JSON.stringify(analysis), JSON.stringify(recommendation), imageData, brandId || "");
   return id;
 }
 
-export function getUnreportedRecommendation(): {
+export function getUnreportedRecommendation(brandId?: string): {
   id: string;
   url: string;
   recommendation: AdRecommendation;
@@ -214,9 +314,16 @@ export function getUnreportedRecommendation(): {
   createdAt: string;
 } | null {
   const db = getDb();
-  const row = db
-    .prepare("SELECT * FROM recommendations WHERE reported = 0 ORDER BY created_at DESC LIMIT 1")
-    .get() as { id: string; url: string; recommendation: string; image_data: string | null; created_at: string } | undefined;
+  let query = "SELECT * FROM recommendations WHERE reported = 0";
+  const params: string[] = [];
+  if (brandId) {
+    query += " AND brand_id = ?";
+    params.push(brandId);
+  }
+  query += " ORDER BY created_at DESC LIMIT 1";
+  const row = db.prepare(query).get(...params) as {
+    id: string; url: string; recommendation: string; image_data: string | null; created_at: string;
+  } | undefined;
   if (!row) return null;
   return {
     id: row.id,
@@ -245,12 +352,13 @@ export function savePerformanceReport(report: {
   shares: number;
   reach: number | null;
   userNotes: string;
+  brandId?: string;
 }): string {
   const db = getDb();
   const id = nanoid(12);
   db.prepare(
-    `INSERT INTO performance_reports (id, recommendation_id, platform, template, message_angle, posted_at, likes, comments, shares, reach, user_notes)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    `INSERT INTO performance_reports (id, recommendation_id, platform, template, message_angle, posted_at, likes, comments, shares, reach, user_notes, brand_id)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
   ).run(
     id,
     report.recommendationId,
@@ -262,7 +370,8 @@ export function savePerformanceReport(report: {
     report.comments,
     report.shares,
     report.reach,
-    report.userNotes
+    report.userNotes,
+    report.brandId || ""
   );
   markRecommendationReported(report.recommendationId);
   return id;
@@ -285,11 +394,16 @@ export function updatePerformanceReport(
   db.prepare(`UPDATE performance_reports SET ${fields.join(", ")} WHERE id = ?`).run(...values);
 }
 
-export function listPerformanceReports(): PerformanceReport[] {
+export function listPerformanceReports(brandId?: string): PerformanceReport[] {
   const db = getDb();
-  const rows = db
-    .prepare("SELECT * FROM performance_reports ORDER BY reported_at DESC")
-    .all() as {
+  let query = "SELECT * FROM performance_reports";
+  const params: string[] = [];
+  if (brandId) {
+    query += " WHERE brand_id = ?";
+    params.push(brandId);
+  }
+  query += " ORDER BY reported_at DESC";
+  const rows = db.prepare(query).all(...params) as {
     id: string;
     recommendation_id: string;
     platform: string;
@@ -321,18 +435,15 @@ export function listPerformanceReports(): PerformanceReport[] {
   }));
 }
 
-export function getRecentPerformanceHistory(limit: number, url?: string): PerformanceReport[] {
+export function getRecentPerformanceHistory(limit: number, brandId?: string): PerformanceReport[] {
   const db = getDb();
-  let query = `
-    SELECT pr.* FROM performance_reports pr
-    JOIN recommendations r ON r.id = pr.recommendation_id
-  `;
+  let query = "SELECT * FROM performance_reports";
   const params: (string | number)[] = [];
-  if (url) {
-    query += " WHERE r.url = ?";
-    params.push(url);
+  if (brandId) {
+    query += " WHERE brand_id = ?";
+    params.push(brandId);
   }
-  query += " ORDER BY pr.reported_at DESC LIMIT ?";
+  query += " ORDER BY reported_at DESC LIMIT ?";
   params.push(limit);
 
   const rows = db.prepare(query).all(...params) as {
@@ -367,9 +478,15 @@ export function getRecentPerformanceHistory(limit: number, url?: string): Perfor
   }));
 }
 
-export function getPerformanceReportCount(): number {
+export function getPerformanceReportCount(brandId?: string): number {
   const db = getDb();
-  const row = db.prepare("SELECT COUNT(*) as count FROM performance_reports").get() as { count: number };
+  let query = "SELECT COUNT(*) as count FROM performance_reports";
+  const params: string[] = [];
+  if (brandId) {
+    query += " WHERE brand_id = ?";
+    params.push(brandId);
+  }
+  const row = db.prepare(query).get(...params) as { count: number };
   return row.count;
 }
 

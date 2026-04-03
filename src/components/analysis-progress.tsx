@@ -33,7 +33,7 @@ export function AnalysisProgress({
                 isComplete
                   ? "bg-brand/20 text-brand"
                   : isActive
-                    ? "bg-brand text-black"
+                    ? "bg-brand text-white"
                     : "bg-surface text-muted"
               }`}
             >

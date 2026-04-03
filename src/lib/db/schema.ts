@@ -18,6 +18,20 @@ CREATE TABLE IF NOT EXISTS day_plans (
   FOREIGN KEY (plan_id) REFERENCES plans(id)
 );
 
+CREATE TABLE IF NOT EXISTS brands (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  url TEXT NOT NULL,
+  domain TEXT NOT NULL UNIQUE,
+  primary_color TEXT DEFAULT '',
+  secondary_color TEXT DEFAULT '',
+  accent_color TEXT DEFAULT '',
+  industry TEXT DEFAULT '',
+  tone TEXT DEFAULT '',
+  analysis TEXT DEFAULT '{}',
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
 CREATE TABLE IF NOT EXISTS recommendations (
   id TEXT PRIMARY KEY,
   url TEXT NOT NULL,
@@ -61,4 +75,7 @@ export const MIGRATE_COLUMNS = [
   "ALTER TABLE plans ADD COLUMN influencer_recommendations TEXT DEFAULT '[]'",
   "ALTER TABLE plans ADD COLUMN total_days INTEGER DEFAULT 30",
   "ALTER TABLE plans ADD COLUMN extended_at TEXT",
+  "ALTER TABLE plans ADD COLUMN brand_id TEXT DEFAULT ''",
+  "ALTER TABLE recommendations ADD COLUMN brand_id TEXT DEFAULT ''",
+  "ALTER TABLE performance_reports ADD COLUMN brand_id TEXT DEFAULT ''",
 ];

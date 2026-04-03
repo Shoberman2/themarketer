@@ -45,7 +45,7 @@ export function UrlInput({
           <button
             type="submit"
             disabled={isLoading || !url.trim()}
-            className="mr-2 px-6 py-2.5 bg-brand text-black text-[13px] font-semibold rounded-xl hover:bg-brand-light transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+            className="mr-2 px-6 py-2.5 bg-brand text-white text-[13px] font-medium hover:bg-brand-light transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           >
             {isLoading ? (
               <span className="flex items-center gap-2">

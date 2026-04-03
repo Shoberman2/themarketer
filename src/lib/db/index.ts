@@ -1,6 +1,7 @@
 import Database from "better-sqlite3";
 import path from "path";
 import { CREATE_TABLES, MIGRATE_COLUMNS } from "./schema";
+import { migrateBrands } from "./migrate-brands";
 
 let db: Database.Database | null = null;
 
@@ -18,6 +19,9 @@ export function getDb(): Database.Database {
         // Column already exists — ignore
       }
     }
+
+    // Migrate existing data to brands (idempotent)
+    migrateBrands();
   }
   return db;
 }

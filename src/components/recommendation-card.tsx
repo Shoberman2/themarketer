@@ -41,11 +41,16 @@ export function RecommendationCard({
   }
 
   function handleOpenPlatform() {
+    // Copy caption to clipboard first so user can paste immediately
+    navigator.clipboard?.writeText(recommendation.caption).catch(() => {});
+
+    // Use share intent URLs where available (pre-fills content)
+    const caption = encodeURIComponent(recommendation.caption);
     const urls: Record<string, string> = {
-      Instagram: "https://www.instagram.com/",
-      Facebook: "https://www.facebook.com/",
-      LinkedIn: "https://www.linkedin.com/feed/",
-      "Twitter/X": "https://twitter.com/compose/tweet",
+      Instagram: "https://www.instagram.com/", // No share intent, user pastes
+      Facebook: `https://www.facebook.com/sharer/sharer.php?quote=${caption}`,
+      LinkedIn: `https://www.linkedin.com/sharing/share-offsite/?url=&summary=${caption}`,
+      "Twitter/X": `https://twitter.com/intent/tweet?text=${caption}`,
       TikTok: "https://www.tiktok.com/upload",
       Pinterest: "https://www.pinterest.com/pin-creation-tool/",
       YouTube: "https://studio.youtube.com/",
@@ -178,7 +183,7 @@ export function RecommendationCard({
         <button
           onClick={handleDownload}
           disabled={!imageData}
-          className="flex-1 py-3 bg-brand text-black text-sm font-semibold rounded-xl hover:bg-brand-light transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          className="flex-1 py-3 bg-brand text-white text-sm font-semibold rounded-xl hover:bg-brand-light transition-all disabled:opacity-30 disabled:cursor-not-allowed"
         >
           Download &amp; Copy Caption
         </button>
