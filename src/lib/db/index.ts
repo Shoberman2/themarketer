@@ -1,6 +1,6 @@
 import Database from "better-sqlite3";
 import path from "path";
-import { CREATE_TABLES, MIGRATE_COLUMNS } from "./schema";
+import { CREATE_TABLES, CREATE_AGENT_TABLES, MIGRATE_COLUMNS } from "./schema";
 import { migrateBrands } from "./migrate-brands";
 
 let db: Database.Database | null = null;
@@ -11,6 +11,7 @@ export function getDb(): Database.Database {
     db = new Database(dbPath);
     db.pragma("journal_mode = WAL");
     db.exec(CREATE_TABLES);
+    db.exec(CREATE_AGENT_TABLES);
 
     for (const sql of MIGRATE_COLUMNS) {
       try {

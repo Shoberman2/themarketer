@@ -21,7 +21,27 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const data = CreateSchema.parse(body);
     const id = savePerformanceReport(data);
-    return NextResponse.json({ id });
+
+    // Trigger agent analysis in the background (non-blocking)
+    let agentCommentary: string | null = null;
+    if (data.brandId) {
+      try {
+        const origin = request.nextUrl.origin;
+        const analysisRes = await fetch(`${origin}/api/agent/analyze-performance`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ brandId: data.brandId, reportId: id }),
+        });
+        if (analysisRes.ok) {
+          const analysis = await analysisRes.json();
+          agentCommentary = analysis.commentary;
+        }
+      } catch {
+        // Agent analysis is non-critical
+      }
+    }
+
+    return NextResponse.json({ id, agentCommentary });
   } catch (error) {
     console.error("Save performance report error:", error);
     const message = error instanceof Error ? error.message : "Failed to save report";

@@ -6,6 +6,7 @@ import { UrlInput } from "@/components/url-input";
 import { AnalysisProgress } from "@/components/analysis-progress";
 import { FallbackForm } from "@/components/fallback-form";
 import { RecommendationCard } from "@/components/recommendation-card";
+import { MorningBrief } from "@/components/morning-brief";
 import { WebsiteAnalysis } from "@/types/analysis";
 import { AdRecommendation } from "@/types/recommendation";
 import { MarketingPlan } from "@/types/plan";
@@ -18,6 +19,7 @@ type FlowState =
   | "recommend"
   | "fallback"
   | "today"
+  | "brief"
   | "completed"
   | "generating-plan";
 
@@ -45,6 +47,7 @@ export default function Home() {
   const [todayPlan, setTodayPlan] = useState<{ plan: MarketingPlan; dayIndex: number } | null>(null);
   const [slowWarning, setSlowWarning] = useState(false);
   const [activeBrandId, setActiveBrandId] = useState<string | null>(null);
+  const [activeBrandName, setActiveBrandName] = useState<string>("");
 
   // Check for existing plans scoped to active brand
   useEffect(() => {
@@ -63,6 +66,7 @@ export default function Home() {
               const first = brands[0];
               localStorage.setItem("activeBrandId", first.id);
               setActiveBrandId(first.id);
+              setActiveBrandName(first.name);
               // Re-run with the selected brand
               window.location.reload();
               return;
@@ -72,38 +76,32 @@ export default function Home() {
           return;
         }
 
+        // Get brand name
+        const brandsRes = await fetch("/api/brands");
+        if (brandsRes.ok) {
+          const { brands } = await brandsRes.json();
+          const activeBrand = brands?.find((b: { id: string }) => b.id === brandId);
+          if (activeBrand) setActiveBrandName(activeBrand.name);
+        }
+
+        // For returning users with a brand: show Morning Brief
         const res = await fetch("/api/plans");
         if (!res.ok) {
-          setFlowState("first-run");
+          // No plans but brand exists — still show brief (agent can generate from brand data)
+          setFlowState("brief");
           return;
         }
         const { plans } = await res.json();
-        // Filter to active brand's plans
         const brandPlans = plans?.filter((p: { brandId: string }) => p.brandId === brandId) || [];
+
         if (brandPlans.length === 0) {
-          setFlowState("first-run");
+          // Brand exists but no plans — show brief if brand has any data
+          setFlowState("brief");
           return;
         }
 
-        // Fetch the most recent plan for this brand
-        const latest = brandPlans[0];
-        const planRes = await fetch(`/api/plans/${latest.id}`);
-        if (!planRes.ok) {
-          setFlowState("first-run");
-          return;
-        }
-        const { plan } = await planRes.json();
-        const daysSinceCreation = Math.floor(
-          (Date.now() - new Date(plan.createdAt).getTime()) / 86400000
-        );
-        const totalDays = plan.totalDays || 30;
-
-        if (daysSinceCreation >= totalDays) {
-          setFlowState("completed");
-        } else {
-          setTodayPlan({ plan, dayIndex: daysSinceCreation });
-          setFlowState("today");
-        }
+        // Brand with plans — show Morning Brief (replaces old "today" view)
+        setFlowState("brief");
       } catch {
         setFlowState("first-run");
       }
@@ -324,7 +322,20 @@ export default function Home() {
     );
   }
 
-  // Returning user — today's task from active plan
+  // Returning user — Morning Brief
+  if (flowState === "brief" && activeBrandId) {
+    return (
+      <div className="min-h-[80vh] py-12">
+        <MorningBrief
+          brandId={activeBrandId}
+          brandName={activeBrandName}
+          onNewCampaign={() => setFlowState("first-run")}
+        />
+      </div>
+    );
+  }
+
+  // Returning user — today's task from active plan (legacy, kept as fallback)
   if (flowState === "today" && todayPlan) {
     const { plan, dayIndex } = todayPlan;
     const day = plan.days[dayIndex];
