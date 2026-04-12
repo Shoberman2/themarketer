@@ -46,5 +46,7 @@ next-env.d.ts
 *.db-wal
 
 # claude
-.claude/
+.claude/*
+!.claude/commands/
+.claude/settings.local.json
 .gstack/

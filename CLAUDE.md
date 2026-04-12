@@ -23,3 +23,4 @@ Key routing rules:
 - Architecture review → invoke plan-eng-review
 - Save progress, checkpoint, resume → invoke checkpoint
 - Code quality, health check → invoke health
+- Marketing strategy review, "think bigger", campaign scope, "is this campaign ambitious enough" → invoke marketing-ceo-review
