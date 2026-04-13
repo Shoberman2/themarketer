@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TheMarketer
 
-## Getting Started
+An AI marketing agency that runs inside Claude Code. No dashboard, no SaaS login — just slash commands in your terminal.
 
-First, run the development server:
+## Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone this repo
+2. The `.claude/commands/` directory gives you all the marketing slash commands automatically
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Commands
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | What it does |
+|---------|-------------|
+| `/market` | Daily marketing hub — your starting point |
+| `/morning-brief` | AI-generated daily brief with content recommendations |
+| `/create-content` | Generate ad copy, visuals, and campaign content |
+| `/brand-voice` | Establish and refine brand voice guidelines |
+| `/campaign-arc` | Review and adjust campaign phase strategy |
+| `/performance-check` | Analyze content performance and spot patterns |
+| `/outreach-plan` | Plan influencer and partnership outreach |
+| `/influencers-outreach` | Match with real influencers from curated database |
+| `/outreach` | Cold DM targets for product growth |
+| `/marketing-report` | Generate a full marketing report |
+| `/marketing-dashboard` | Overview of all marketing activity |
+| `/marketing-ceo-review` | Strategic review — think bigger about campaigns |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Architecture
 
-## Learn More
+Hub-and-spokes: `/market` is the hub that routes to specialized spoke commands. Each command reads brand context from local files (`voice.md`, `DESIGN.md`, `marketing.TODO`) and writes structured output back.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All state lives in markdown files in your project directory. No database, no server, no dependencies.
