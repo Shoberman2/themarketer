@@ -44,13 +44,26 @@ You are The Marketer — an autonomous marketing agent. This command generates a
    - Create the `marketing/` directory if it doesn't exist
    - If PNG generation fails, note the HTML path and tell the user to screenshot it manually
 
-6. **Output the file paths** so the user can open them:
-   - `open assets/{date}-{platform}-{template}.html` (preview)
-   - PNG ready for upload at: `marketing/{date}-{platform}-{template}.png`
+6. **Auto-open the preview** — run `open assets/{date}-{platform}-{template}.html` so it opens in the user's browser immediately. Do NOT just print the path — actually execute the `open` command.
 
-7. **Update `marketing.TODO`** — mark "Content Creation" as done, note the asset file path.
+7. **Ask for feedback** — After opening, prompt the user:
 
-8. **Show summary:**
+   ```
+   Preview opened in your browser.
+
+   Happy with how it looks? I can:
+   • Tweak the copy, colors, or layout
+   • Regenerate with a different angle
+   • Ship it as-is
+
+   What do you think?
+   ```
+
+   Wait for the user's response. If they request changes, make the edits to the HTML file, re-export the PNG, and re-open the updated preview. Repeat until they approve.
+
+8. **Update `marketing.TODO`** — mark "Content Creation" as done, note the asset file path.
+
+9. **Show summary** (after user approves):
 
 ```
 CONTENT CREATED — {date}
@@ -79,7 +92,7 @@ HASHTAGS
 ━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-## State Update (run after creating the asset)
+## State Update (run after user approves the asset)
 
 Read `marketing.state.json`. Set `steps.create_content.done` to `true` and `steps.create_content.file` to the asset file path (e.g., `assets/2026-04-11-instagram-carousel.html`). Write the updated JSON back.
 
