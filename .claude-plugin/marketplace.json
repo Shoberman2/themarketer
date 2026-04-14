@@ -1,0 +1,13 @@
+{
+  "name": "themarketer",
+  "owner": {
+    "name": "Shoberman2"
+  },
+  "plugins": [
+    {
+      "name": "themarketer",
+      "source": ".",
+      "description": "AI marketing agency in your terminal. Daily cadence, AI-generated content with images, brand voice, campaign arcs, influencer outreach, and performance tracking."
+    }
+  ]
+}
