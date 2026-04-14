@@ -2,11 +2,6 @@
 
 TheMarketer is a CLI-only AI marketing agency. All features live in `.claude/commands/` as slash commands. There is no web app — the product IS the CLI workflow inside Claude Code.
 
-## Design System
-Always read DESIGN.md before making any visual or UI decisions.
-All font choices, colors, spacing, and aesthetic direction are defined there.
-Do not deviate without explicit user approval.
-
 ## Skill routing
 
 When the user's request matches an available skill, ALWAYS invoke it using the Skill

@@ -1,11 +1,27 @@
 # TheMarketer
 
-An AI marketing agency that runs inside Claude Code. No dashboard, no SaaS login — just slash commands in your terminal.
+An AI marketing agency that runs inside [Claude Code](https://docs.anthropic.com/en/docs/claude-code). No dashboard, no SaaS login... just slash commands in your terminal.
 
-## Setup
+## Prerequisites
 
-1. Clone this repo
-2. The `.claude/commands/` directory gives you all the marketing slash commands automatically
+Install Claude Code: https://docs.anthropic.com/en/docs/claude-code/getting-started
+
+## Install
+
+Clone this repo into any project where you want marketing commands:
+
+```bash
+git clone https://github.com/Shoberman2/themarketer.git
+cd themarketer
+```
+
+The `.claude/commands/` directory is picked up automatically by Claude Code. Open Claude Code in this directory and the commands are ready to use.
+
+**Or** copy just the commands into an existing project:
+
+```bash
+cp -r themarketer/.claude/commands/ your-project/.claude/commands/
+```
 
 ## Commands
 
@@ -18,14 +34,11 @@ An AI marketing agency that runs inside Claude Code. No dashboard, no SaaS login
 | `/campaign-arc` | Review and adjust campaign phase strategy |
 | `/performance-check` | Analyze content performance and spot patterns |
 | `/outreach-plan` | Plan influencer and partnership outreach |
-| `/influencers-outreach` | Match with real influencers from curated database |
 | `/outreach` | Cold DM targets for product growth |
 | `/marketing-report` | Generate a full marketing report |
 | `/marketing-dashboard` | Overview of all marketing activity |
 | `/marketing-ceo-review` | Strategic review — think bigger about campaigns |
 
-## Architecture
+## How it works
 
-Hub-and-spokes: `/market` is the hub that routes to specialized spoke commands. Each command reads brand context from local files (`voice.md`, `DESIGN.md`, `marketing.TODO`) and writes structured output back.
-
-All state lives in markdown files in your project directory. No database, no server, no dependencies.
+All state lives in markdown files in your project directory. No database, no server, no dependencies. Start with `/market` and it walks you through everything.
