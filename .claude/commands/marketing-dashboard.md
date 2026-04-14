@@ -29,8 +29,9 @@ DAILY STEPS              STATUS
 3. Content Creation      [ ] /create-content
 4. Brand Voice Check     [ ] /brand-voice
 5. Performance Analysis  [ ] /performance-check
-6. Outreach Planning     [ ] /outreach-plan
-7. End-of-Day Report     [ ] /marketing-report
+6. Influencer Outreach   [ ] /influencer-outreach
+7. Cold Outreach         [ ] /cold-outreach
+8. End-of-Day Report     [ ] /marketing-report
 
 HISTORY (last 7 days)
 ─────────────────────────────────
@@ -43,9 +44,11 @@ AVAILABLE COMMANDS
 /create-content     — Generate a marketing asset
 /brand-voice        — Analyze & refine brand voice
 /performance-check  — Deep dive into what's working
-/outreach-plan      — Plan influencer outreach
+/influencer-outreach — Match against influencer database
+/cold-outreach      — Generate cold outreach targets
 /marketing-report   — Generate end-of-day summary
 /marketing-dashboard — This dashboard
+/setup              — Set up a new brand
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 

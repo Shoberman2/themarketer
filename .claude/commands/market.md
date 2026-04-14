@@ -37,7 +37,7 @@ If `marketing.state.json` does not exist:
 }
 ```
 
-3. If no brand context found, show: "No brand context detected. Run `/brand-voice` first to create a voice.md, or add a DESIGN.md or README.md describing your product."
+3. If no brand context found, show: "No brand context detected. Run `/setup` for a guided brand setup, or run `/brand-voice` to create a voice.md manually."
 
 ### Step 3: Day rollover
 
@@ -56,7 +56,9 @@ If `marketing.state.json` exists and `current_day` is not today:
 
 ### Step 4: Generate today's theme (if no theme set for today)
 
-Generate a specific, creative marketing theme based on two factors:
+**Template-aware theme generation:** If `marketing.state.json` has a `"template"` field (e.g., `"template": "product-launch"`), read the corresponding template file from `~/.claude/commands/themarketer-data/templates/{template}.json`. Use the template's phase definitions to determine the current phase: find which phase's `startDay`/`endDay` range contains the current `campaign_day` value. If `campaign_day` exceeds the template's `totalDays`, use the last phase. Use the matching phase's `themeBank` to pick today's theme instead of the hardcoded matrix below. If the template file is missing or malformed, fall back to the hardcoded matrix.
+
+**If no template is selected** (legacy state files or `"template"` field is missing), generate a specific, creative marketing theme based on two factors:
 
 **Campaign phase:**
 - awareness: themes about introducing, visibility, first impressions, casting wide
@@ -116,8 +118,9 @@ TODAY'S STEPS                    STATUS
 3. Brand Voice Check             {[x] or [ ]} /brand-voice
 4. Campaign Arc Review           {[x] or [ ]} /campaign-arc
 5. Performance Analysis          {[x] or [ ]} /performance-check
-6. Outreach Planning             {[x] or [ ]} /outreach-plan
-7. End-of-Day Report             {[x] or [ ]} /marketing-report
+6. Influencer Outreach            {[x] or [ ]} /influencer-outreach
+7. Cold Outreach                  {[x] or [ ]} /cold-outreach
+8. End-of-Day Report             {[x] or [ ]} /marketing-report
 
 BRAND CONTEXT
 ──────────────────────────────────────────

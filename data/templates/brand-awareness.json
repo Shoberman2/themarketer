@@ -1,0 +1,86 @@
+{
+  "name": "Brand Awareness",
+  "description": "42-day brand-building campaign arc focused on establishing market presence, trust, and audience connection from scratch.",
+  "totalDays": 42,
+  "phases": [
+    {
+      "name": "introduction",
+      "label": "Brand Introduction",
+      "days": [1, 14],
+      "goal": "Introduce who you are and what you stand for. Establish visual identity and brand voice across all channels. Reach new audiences.",
+      "spokeCadence": {
+        "socialPosts": "1 per day, brand story focused",
+        "emailBlasts": "1 total (day 7 — welcome sequence kickoff)",
+        "blogPosts": "3 foundational thought-leadership pieces",
+        "paidAds": "Reach-optimized, brand video and carousel creative",
+        "influencerTouchpoints": "Identify and outreach to 5-8 aligned creators"
+      },
+      "themeBank": [
+        "Who We Are: Origin Story",
+        "What We Believe: Mission & Values",
+        "The Problem We're Solving",
+        "Meet the Team Behind the Brand",
+        "Our Process: How We're Different"
+      ]
+    },
+    {
+      "name": "storytelling",
+      "label": "Storytelling & Connection",
+      "days": [15, 28],
+      "goal": "Deepen emotional connection through stories, customer voices, and behind-the-scenes transparency. Build community engagement.",
+      "spokeCadence": {
+        "socialPosts": "1-2 per day, narrative content",
+        "emailBlasts": "2 total (day 18 story feature, day 25 community roundup)",
+        "blogPosts": "2 interview or profile pieces",
+        "paidAds": "Engagement-optimized, video testimonials",
+        "influencerTouchpoints": "First wave of creator content published"
+      },
+      "themeBank": [
+        "Customer Story Spotlight",
+        "Behind the Scenes: A Day at Our HQ",
+        "Why We Made This Choice",
+        "Community Voices: What You Told Us",
+        "The Journey So Far"
+      ]
+    },
+    {
+      "name": "authority",
+      "label": "Authority & Trust",
+      "days": [29, 38],
+      "goal": "Position as a category leader through data, expertise, and social proof. Drive press coverage and backlinks.",
+      "spokeCadence": {
+        "socialPosts": "1-2 per day, data and insight driven",
+        "emailBlasts": "2 total (day 30 industry report, day 36 press roundup)",
+        "blogPosts": "2 data-driven or research-backed articles",
+        "paidAds": "Consideration-optimized, retarget engaged audiences",
+        "influencerTouchpoints": "Second wave of creator content, thought-leader endorsements"
+      },
+      "themeBank": [
+        "Industry Insights: Data We Uncovered",
+        "Expert Take: Our Point of View",
+        "Press & Media Mentions",
+        "Awards, Certifications & Milestones",
+        "What the Experts Are Saying"
+      ]
+    },
+    {
+      "name": "retention",
+      "label": "Community & Retention",
+      "days": [39, 42],
+      "goal": "Convert awareness into lasting relationships. Launch community initiatives, referral programs, and ongoing content series.",
+      "spokeCadence": {
+        "socialPosts": "1 per day, community-focused",
+        "emailBlasts": "1 total (day 40 — referral program launch or community invite)",
+        "blogPosts": "1 forward-looking roadmap or vision piece",
+        "paidAds": "Minimal — organic momentum",
+        "influencerTouchpoints": "Long-term ambassador program invitations"
+      },
+      "themeBank": [
+        "Join the Community",
+        "Refer a Friend: Give & Get",
+        "What's Coming Next: Our Roadmap",
+        "Thank You for Being Here"
+      ]
+    }
+  ]
+}

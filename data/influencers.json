@@ -1,0 +1,407 @@
+[
+  {
+    "name": "Maya Chen",
+    "platform": "YouTube",
+    "niche": "Developer productivity tools and workflows for remote engineering teams",
+    "followerRange": "100K-500K",
+    "industryTags": ["SaaS", "developer-tools", "productivity"],
+    "partnershipIdeas": ["Sponsored deep-dive tutorial", "Tool comparison video featuring your product"],
+    "profileUrl": "https://youtube.com/@mayachendev"
+  },
+  {
+    "name": "Jordan Wells",
+    "platform": "Twitter",
+    "niche": "SaaS growth metrics, PLG strategy, and startup fundraising insights",
+    "followerRange": "50K-100K",
+    "industryTags": ["SaaS", "startups", "growth"],
+    "partnershipIdeas": ["Twitter thread case study", "Co-authored growth teardown"],
+    "profileUrl": "https://twitter.com/jordanwellsSaaS"
+  },
+  {
+    "name": "Priya Nair",
+    "platform": "LinkedIn",
+    "niche": "Enterprise digital transformation and cloud migration decision-making",
+    "followerRange": "100K-500K",
+    "industryTags": ["SaaS", "enterprise", "cloud"],
+    "partnershipIdeas": ["LinkedIn article co-creation", "Webinar guest speaker"],
+    "profileUrl": "https://linkedin.com/in/priyanaircloud"
+  },
+  {
+    "name": "Dex Morales",
+    "platform": "TikTok",
+    "niche": "Bite-sized coding tutorials and tech career advice for Gen Z developers",
+    "followerRange": "500K-1M",
+    "industryTags": ["tech", "education", "career"],
+    "partnershipIdeas": ["Sponsored coding challenge", "Day-in-the-life feature using your tool"],
+    "profileUrl": "https://tiktok.com/@dexcodes"
+  },
+  {
+    "name": "Lena Ostrowski",
+    "platform": "Instagram",
+    "niche": "Minimalist e-commerce branding and Shopify store design showcases",
+    "followerRange": "50K-100K",
+    "industryTags": ["e-commerce", "branding", "design"],
+    "partnershipIdeas": ["Brand redesign case study carousel", "Instagram Reel store tour"],
+    "profileUrl": "https://instagram.com/lenaodesigns"
+  },
+  {
+    "name": "Marcus Tate",
+    "platform": "YouTube",
+    "niche": "Dropshipping and DTC e-commerce scaling strategies with real revenue numbers",
+    "followerRange": "100K-500K",
+    "industryTags": ["e-commerce", "DTC", "entrepreneurship"],
+    "partnershipIdeas": ["Product integration in scaling tutorial", "Revenue dashboard walkthrough"],
+    "profileUrl": "https://youtube.com/@marcustateDTC"
+  },
+  {
+    "name": "Aisha Patel",
+    "platform": "Instagram",
+    "niche": "Evidence-based fitness programming and nutrition science for women over 30",
+    "followerRange": "100K-500K",
+    "industryTags": ["health", "fitness", "wellness"],
+    "partnershipIdeas": ["30-day challenge sponsorship", "Product review in fitness routine"],
+    "profileUrl": "https://instagram.com/aisha.fitscience"
+  },
+  {
+    "name": "Tyler Brennan",
+    "platform": "YouTube",
+    "niche": "Functional fitness, mobility routines, and recovery science for athletes",
+    "followerRange": "500K-1M",
+    "industryTags": ["health", "fitness", "sports"],
+    "partnershipIdeas": ["Sponsored recovery routine video", "Affiliate partnership with discount code"],
+    "profileUrl": "https://youtube.com/@tylerbrennanfit"
+  },
+  {
+    "name": "Samira Kouassi",
+    "platform": "TikTok",
+    "niche": "Quick healthy meal prep for busy professionals, budget-friendly recipes",
+    "followerRange": "1M+",
+    "industryTags": ["health", "food-beverage", "lifestyle"],
+    "partnershipIdeas": ["Branded meal prep series", "Kitchen gadget integration"],
+    "profileUrl": "https://tiktok.com/@samiracooks"
+  },
+  {
+    "name": "Ryan Cho",
+    "platform": "Twitter",
+    "niche": "Personal finance for tech workers — RSUs, tax optimization, FIRE movement",
+    "followerRange": "50K-100K",
+    "industryTags": ["finance", "fintech", "tech"],
+    "partnershipIdeas": ["Thread series on financial tools", "Sponsored calculator or worksheet"],
+    "profileUrl": "https://twitter.com/ryanchofinance"
+  },
+  {
+    "name": "Nina Vasquez",
+    "platform": "YouTube",
+    "niche": "Fintech app reviews, neobank comparisons, and digital banking deep dives",
+    "followerRange": "100K-500K",
+    "industryTags": ["finance", "fintech", "banking"],
+    "partnershipIdeas": ["Sponsored app review", "Fintech landscape breakdown featuring your product"],
+    "profileUrl": "https://youtube.com/@ninavfintech"
+  },
+  {
+    "name": "Kwame Asante",
+    "platform": "LinkedIn",
+    "niche": "Wealth building and financial literacy for first-generation professionals",
+    "followerRange": "10K-50K",
+    "industryTags": ["finance", "education", "career"],
+    "partnershipIdeas": ["Co-hosted LinkedIn Live session", "Sponsored financial literacy guide"],
+    "profileUrl": "https://linkedin.com/in/kwameasantefinance"
+  },
+  {
+    "name": "Elena Birch",
+    "platform": "Instagram",
+    "niche": "Online course creation, curriculum design, and EdTech tool reviews",
+    "followerRange": "50K-100K",
+    "industryTags": ["education", "EdTech", "creator-economy"],
+    "partnershipIdeas": ["Course creation case study", "Tool stack recommendation post"],
+    "profileUrl": "https://instagram.com/elenabirchteaches"
+  },
+  {
+    "name": "Omar Hassan",
+    "platform": "YouTube",
+    "niche": "Study techniques, learning science, and academic productivity systems",
+    "followerRange": "500K-1M",
+    "industryTags": ["education", "productivity", "student-life"],
+    "partnershipIdeas": ["Sponsored study system video", "Back-to-school campaign integration"],
+    "profileUrl": "https://youtube.com/@omarlearnhacks"
+  },
+  {
+    "name": "Tessa Nakamura",
+    "platform": "TikTok",
+    "niche": "Language learning tips, polyglot challenges, and cultural immersion content",
+    "followerRange": "100K-500K",
+    "industryTags": ["education", "language", "culture"],
+    "partnershipIdeas": ["30-day language challenge sponsorship", "App review in learning journey"],
+    "profileUrl": "https://tiktok.com/@tessaspeaks"
+  },
+  {
+    "name": "Ben Cartwright",
+    "platform": "Instagram",
+    "niche": "Craft coffee roasting, specialty brewing methods, and cafe culture photography",
+    "followerRange": "50K-100K",
+    "industryTags": ["food-beverage", "lifestyle", "photography"],
+    "partnershipIdeas": ["Branded brewing tutorial reel", "Product placement in cafe review"],
+    "profileUrl": "https://instagram.com/bencartwright.coffee"
+  },
+  {
+    "name": "Lucia Ferraro",
+    "platform": "YouTube",
+    "niche": "Restaurant-quality home cooking, Italian cuisine, and kitchen equipment reviews",
+    "followerRange": "100K-500K",
+    "industryTags": ["food-beverage", "cooking", "lifestyle"],
+    "partnershipIdeas": ["Sponsored recipe series", "Kitchen tool integration in cooking video"],
+    "profileUrl": "https://youtube.com/@luciaferrarocooks"
+  },
+  {
+    "name": "Jasper Lim",
+    "platform": "TikTok",
+    "niche": "Street food tours, hole-in-the-wall restaurant finds, and food trend reporting",
+    "followerRange": "1M+",
+    "industryTags": ["food-beverage", "travel", "entertainment"],
+    "partnershipIdeas": ["Branded city food tour series", "Restaurant discovery app partnership"],
+    "profileUrl": "https://tiktok.com/@jaspereats"
+  },
+  {
+    "name": "Chloe Park",
+    "platform": "Instagram",
+    "niche": "Sustainable fashion, capsule wardrobe building, and ethical brand spotlights",
+    "followerRange": "100K-500K",
+    "industryTags": ["fashion", "sustainability", "lifestyle"],
+    "partnershipIdeas": ["Capsule wardrobe featuring your brand", "Ethical fashion haul"],
+    "profileUrl": "https://instagram.com/chloeparkstyle"
+  },
+  {
+    "name": "Andre Michel",
+    "platform": "YouTube",
+    "niche": "Men's streetwear, sneaker culture, and affordable style breakdowns",
+    "followerRange": "500K-1M",
+    "industryTags": ["fashion", "streetwear", "culture"],
+    "partnershipIdeas": ["Outfit-of-the-day sponsorship", "Sneaker unboxing collaboration"],
+    "profileUrl": "https://youtube.com/@andremichelstyle"
+  },
+  {
+    "name": "Sofia Reyes",
+    "platform": "TikTok",
+    "niche": "Thrift flip transformations, DIY fashion upcycling, and vintage finds",
+    "followerRange": "500K-1M",
+    "industryTags": ["fashion", "sustainability", "DIY"],
+    "partnershipIdeas": ["Thrift challenge with branded twist", "Sustainable fashion collab"],
+    "profileUrl": "https://tiktok.com/@sofiathrifts"
+  },
+  {
+    "name": "Daniel Reeves",
+    "platform": "YouTube",
+    "niche": "First-time homebuyer education, mortgage breakdowns, and house-flipping walkthroughs",
+    "followerRange": "100K-500K",
+    "industryTags": ["real-estate", "finance", "education"],
+    "partnershipIdeas": ["Homebuyer toolkit sponsorship", "Mortgage calculator feature"],
+    "profileUrl": "https://youtube.com/@danielreevesrealty"
+  },
+  {
+    "name": "Grace Okafor",
+    "platform": "Instagram",
+    "niche": "Luxury real estate tours, interior staging, and investment property analysis",
+    "followerRange": "50K-100K",
+    "industryTags": ["real-estate", "luxury", "investing"],
+    "partnershipIdeas": ["Virtual property tour sponsorship", "Investment analysis tool feature"],
+    "profileUrl": "https://instagram.com/graceokafor.realty"
+  },
+  {
+    "name": "Alex Whitfield",
+    "platform": "LinkedIn",
+    "niche": "Commercial real estate trends, PropTech innovation, and market analysis",
+    "followerRange": "10K-50K",
+    "industryTags": ["real-estate", "PropTech", "investing"],
+    "partnershipIdeas": ["Market report co-creation", "PropTech tool showcase article"],
+    "profileUrl": "https://linkedin.com/in/alexwhitfieldcre"
+  },
+  {
+    "name": "Mia Torres",
+    "platform": "Instagram",
+    "niche": "Budget travel hacking, points optimization, and hidden-gem destination guides",
+    "followerRange": "100K-500K",
+    "industryTags": ["travel", "lifestyle", "finance"],
+    "partnershipIdeas": ["Travel hack series sponsorship", "Destination guide collaboration"],
+    "profileUrl": "https://instagram.com/miatorres.travels"
+  },
+  {
+    "name": "James Okonkwo",
+    "platform": "YouTube",
+    "niche": "Solo adventure travel, outdoor gear reviews, and remote work travel vlogs",
+    "followerRange": "500K-1M",
+    "industryTags": ["travel", "adventure", "remote-work"],
+    "partnershipIdeas": ["Gear review integration", "Digital nomad day-in-the-life sponsorship"],
+    "profileUrl": "https://youtube.com/@jamesokonkwotravels"
+  },
+  {
+    "name": "Hannah Kim",
+    "platform": "TikTok",
+    "niche": "Luxury hotel reviews, travel aesthetic content, and packing optimization tips",
+    "followerRange": "100K-500K",
+    "industryTags": ["travel", "luxury", "lifestyle"],
+    "partnershipIdeas": ["Hotel stay sponsorship content", "Travel essentials haul"],
+    "profileUrl": "https://tiktok.com/@hannahkimtravels"
+  },
+  {
+    "name": "Leo Strand",
+    "platform": "YouTube",
+    "niche": "Sustainable living experiments, zero-waste challenges, and eco-product testing",
+    "followerRange": "100K-500K",
+    "industryTags": ["sustainability", "lifestyle", "environment"],
+    "partnershipIdeas": ["Eco-product challenge sponsorship", "Sustainability swap series"],
+    "profileUrl": "https://youtube.com/@leostrandeco"
+  },
+  {
+    "name": "Zara Mendez",
+    "platform": "Instagram",
+    "niche": "Climate tech startups, green investing, and corporate sustainability scorecards",
+    "followerRange": "10K-50K",
+    "industryTags": ["sustainability", "fintech", "climate"],
+    "partnershipIdeas": ["Green startup spotlight series", "ESG tool review post"],
+    "profileUrl": "https://instagram.com/zaramendezsustain"
+  },
+  {
+    "name": "Owen Clarke",
+    "platform": "LinkedIn",
+    "niche": "Circular economy business models, supply chain sustainability, and B-Corp strategy",
+    "followerRange": "10K-50K",
+    "industryTags": ["sustainability", "business", "supply-chain"],
+    "partnershipIdeas": ["Thought leadership co-authored article", "Sustainability report collaboration"],
+    "profileUrl": "https://linkedin.com/in/owenclarkecircular"
+  },
+  {
+    "name": "Kai Tanaka",
+    "platform": "YouTube",
+    "niche": "Indie game development, Unity tutorials, and game design philosophy",
+    "followerRange": "100K-500K",
+    "industryTags": ["gaming", "game-dev", "education"],
+    "partnershipIdeas": ["Dev tool sponsorship in tutorial", "Game jam collaboration"],
+    "profileUrl": "https://youtube.com/@kaitanakadev"
+  },
+  {
+    "name": "Ava Sinclair",
+    "platform": "TikTok",
+    "niche": "Gaming highlights, esports commentary, and gaming setup tours",
+    "followerRange": "1M+",
+    "industryTags": ["gaming", "esports", "entertainment"],
+    "partnershipIdeas": ["Gaming peripheral sponsorship", "Setup tour product placement"],
+    "profileUrl": "https://tiktok.com/@avasinclair.gg"
+  },
+  {
+    "name": "Rico Alvarez",
+    "platform": "Twitter",
+    "niche": "Mobile gaming industry analysis, app store trends, and hyper-casual game mechanics",
+    "followerRange": "10K-50K",
+    "industryTags": ["gaming", "mobile", "analytics"],
+    "partnershipIdeas": ["Industry report thread sponsorship", "Beta test recruitment campaign"],
+    "profileUrl": "https://twitter.com/ricoalvarezgame"
+  },
+  {
+    "name": "Nadia Ibrahim",
+    "platform": "YouTube",
+    "niche": "Creator economy business strategy, monetization teardowns, and platform comparison",
+    "followerRange": "100K-500K",
+    "industryTags": ["creator-economy", "business", "social-media"],
+    "partnershipIdeas": ["Platform strategy case study", "Creator toolkit review"],
+    "profileUrl": "https://youtube.com/@nadiaibrahimcreator"
+  },
+  {
+    "name": "Ethan Brooks",
+    "platform": "Twitter",
+    "niche": "Newsletter growth tactics, email marketing strategy, and indie creator monetization",
+    "followerRange": "50K-100K",
+    "industryTags": ["creator-economy", "email-marketing", "writing"],
+    "partnershipIdeas": ["Newsletter sponsorship", "Growth teardown thread series"],
+    "profileUrl": "https://twitter.com/ethanbrookswrites"
+  },
+  {
+    "name": "Vivian Chang",
+    "platform": "Instagram",
+    "niche": "UGC creation tutorials, brand collaboration how-tos, and content creator business tips",
+    "followerRange": "50K-100K",
+    "industryTags": ["creator-economy", "UGC", "marketing"],
+    "partnershipIdeas": ["UGC campaign collaboration", "Creator business masterclass sponsorship"],
+    "profileUrl": "https://instagram.com/vivianchang.ugc"
+  },
+  {
+    "name": "Derek Hoffman",
+    "platform": "LinkedIn",
+    "niche": "B2B SaaS marketing strategy, demand generation, and ABM playbooks",
+    "followerRange": "50K-100K",
+    "industryTags": ["SaaS", "marketing", "B2B"],
+    "partnershipIdeas": ["ABM case study co-creation", "Demand gen webinar partnership"],
+    "profileUrl": "https://linkedin.com/in/derekhoffmanb2b"
+  },
+  {
+    "name": "Iris Wu",
+    "platform": "TikTok",
+    "niche": "AI tool demos, prompt engineering tips, and automation workflow showcases",
+    "followerRange": "500K-1M",
+    "industryTags": ["tech", "AI", "productivity"],
+    "partnershipIdeas": ["AI tool showcase video", "Workflow automation challenge"],
+    "profileUrl": "https://tiktok.com/@iriswuai"
+  },
+  {
+    "name": "Carlos Vega",
+    "platform": "YouTube",
+    "niche": "Cybersecurity explainers, privacy tool reviews, and ethical hacking walkthroughs",
+    "followerRange": "100K-500K",
+    "industryTags": ["tech", "cybersecurity", "privacy"],
+    "partnershipIdeas": ["Security tool review", "Privacy challenge series sponsorship"],
+    "profileUrl": "https://youtube.com/@carlosvegasec"
+  },
+  {
+    "name": "Faye Robinson",
+    "platform": "Instagram",
+    "niche": "Workspace aesthetics, home office setups, and productivity environment design",
+    "followerRange": "100K-500K",
+    "industryTags": ["lifestyle", "productivity", "design"],
+    "partnershipIdeas": ["Desk setup product placement", "Productivity environment makeover"],
+    "profileUrl": "https://instagram.com/fayerobinson.spaces"
+  },
+  {
+    "name": "Noah Petersen",
+    "platform": "Twitter",
+    "niche": "Open source project maintainer advocacy, DevRel strategy, and community building",
+    "followerRange": "10K-50K",
+    "industryTags": ["tech", "open-source", "community"],
+    "partnershipIdeas": ["Open source sponsorship", "DevRel strategy thread collaboration"],
+    "profileUrl": "https://twitter.com/noahpetersenoss"
+  },
+  {
+    "name": "Amara Johnson",
+    "platform": "LinkedIn",
+    "niche": "HR tech, remote team management, and workplace culture transformation",
+    "followerRange": "50K-100K",
+    "industryTags": ["SaaS", "HR-tech", "remote-work"],
+    "partnershipIdeas": ["Remote work playbook sponsorship", "HR tool comparison article"],
+    "profileUrl": "https://linkedin.com/in/amarajohnsonhr"
+  },
+  {
+    "name": "Theo Blackwell",
+    "platform": "YouTube",
+    "niche": "Personal budgeting systems, debt payoff strategies, and financial app walkthroughs",
+    "followerRange": "500K-1M",
+    "industryTags": ["finance", "personal-finance", "education"],
+    "partnershipIdeas": ["Budgeting app review", "Financial challenge series sponsorship"],
+    "profileUrl": "https://youtube.com/@theoblackwellmoney"
+  },
+  {
+    "name": "Lina Sørensen",
+    "platform": "Instagram",
+    "niche": "Scandinavian design aesthetics, e-commerce packaging, and unboxing experience design",
+    "followerRange": "50K-100K",
+    "industryTags": ["e-commerce", "design", "branding"],
+    "partnershipIdeas": ["Unboxing experience feature", "Packaging design case study"],
+    "profileUrl": "https://instagram.com/linasorensendesign"
+  },
+  {
+    "name": "Raj Malhotra",
+    "platform": "Twitter",
+    "niche": "Crypto market analysis, DeFi protocol breakdowns, and Web3 builder insights",
+    "followerRange": "100K-500K",
+    "industryTags": ["fintech", "crypto", "Web3"],
+    "partnershipIdeas": ["Protocol analysis thread", "Web3 tool sponsorship"],
+    "profileUrl": "https://twitter.com/rajmalhotraweb3"
+  }
+]

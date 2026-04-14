@@ -1,0 +1,86 @@
+{
+  "name": "Product Launch",
+  "description": "42-day full-funnel product launch campaign from awareness through post-launch retention.",
+  "totalDays": 42,
+  "phases": [
+    {
+      "name": "awareness",
+      "label": "Awareness & Teaser",
+      "days": [1, 14],
+      "goal": "Build anticipation and establish the problem your product solves. Grow audience and email list.",
+      "spokeCadence": {
+        "socialPosts": "1-2 per day",
+        "emailBlasts": "2 total (day 3 and day 10)",
+        "blogPosts": "2 long-form articles",
+        "paidAds": "Awareness-optimized, broad targeting",
+        "influencerTouchpoints": "Seed product to 3-5 influencers"
+      },
+      "themeBank": [
+        "The Problem Nobody Talks About",
+        "Behind the Scenes: Building in Public",
+        "Industry Pain Point Spotlight",
+        "Founder Story & Origin",
+        "Sneak Peek & Teaser Drops"
+      ]
+    },
+    {
+      "name": "consideration",
+      "label": "Consideration & Education",
+      "days": [15, 28],
+      "goal": "Educate prospects on your solution. Drive sign-ups to waitlist or early access. Position against alternatives.",
+      "spokeCadence": {
+        "socialPosts": "2 per day",
+        "emailBlasts": "3 total (days 16, 21, 26)",
+        "blogPosts": "3 comparison/how-to articles",
+        "paidAds": "Retargeting warm audiences, consideration-optimized",
+        "influencerTouchpoints": "Publish 2-3 sponsored reviews or tutorials"
+      },
+      "themeBank": [
+        "How It Works: Deep Dive",
+        "Comparison & Alternatives Breakdown",
+        "Early User Testimonials",
+        "Use Case Spotlights",
+        "Live Demo & Walkthrough"
+      ]
+    },
+    {
+      "name": "conversion",
+      "label": "Launch & Conversion",
+      "days": [29, 38],
+      "goal": "Drive purchases, sign-ups, or activations. Maximum urgency and social proof. This is the sprint.",
+      "spokeCadence": {
+        "socialPosts": "2-3 per day",
+        "emailBlasts": "4 total (days 29, 32, 35, 38)",
+        "blogPosts": "1 launch announcement post",
+        "paidAds": "Conversion-optimized, aggressive retargeting, lookalikes",
+        "influencerTouchpoints": "Coordinated launch day posts from all partners"
+      },
+      "themeBank": [
+        "It's Live: Launch Day Announcement",
+        "Limited-Time Launch Offer",
+        "Social Proof Avalanche",
+        "Customer Success Stories",
+        "Last Chance for Launch Pricing"
+      ]
+    },
+    {
+      "name": "retention",
+      "label": "Post-Launch Retention",
+      "days": [39, 42],
+      "goal": "Onboard new users, reduce churn, collect feedback, and plant seeds for the next campaign cycle.",
+      "spokeCadence": {
+        "socialPosts": "1 per day",
+        "emailBlasts": "2 total (day 39 welcome, day 42 feedback request)",
+        "blogPosts": "1 recap/thank-you post",
+        "paidAds": "Paused or minimal spend",
+        "influencerTouchpoints": "Thank-you posts, reshare UGC"
+      },
+      "themeBank": [
+        "Welcome & Onboarding Tips",
+        "Quick Wins: Get Value in 5 Minutes",
+        "Community Spotlight",
+        "What's Next: Roadmap Preview"
+      ]
+    }
+  ]
+}

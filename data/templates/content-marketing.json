@@ -1,0 +1,87 @@
+{
+  "name": "Content Marketing",
+  "description": "56-day slow-burn educational content campaign that builds authority and community through consistent value delivery.",
+  "totalDays": 56,
+  "phases": [
+    {
+      "name": "foundation",
+      "label": "Foundation & Research",
+      "days": [1, 14],
+      "goal": "Establish content pillars, publish cornerstone pieces, and set the editorial calendar. Build initial SEO footprint and email funnel.",
+      "spokeCadence": {
+        "socialPosts": "1 per day, question-driven engagement posts",
+        "emailBlasts": "1 total (day 7 — welcome series with content digest)",
+        "blogPosts": "4 cornerstone/pillar articles (2000+ words each)",
+        "paidAds": "Content promotion only, traffic-optimized",
+        "influencerTouchpoints": "Research and shortlist 5-10 expert contributors"
+      },
+      "themeBank": [
+        "The Complete Guide to [Core Topic]",
+        "Myths vs. Reality in [Industry]",
+        "State of the Industry: What the Data Shows",
+        "Beginner's Roadmap: Where to Start",
+        "The Question Everyone's Afraid to Ask"
+      ]
+    },
+    {
+      "name": "education",
+      "label": "Education & Value",
+      "days": [15, 28],
+      "goal": "Publish consistently valuable how-to content. Build email list through lead magnets. Establish a predictable content rhythm readers rely on.",
+      "spokeCadence": {
+        "socialPosts": "1-2 per day, tip threads and micro-lessons",
+        "emailBlasts": "2 total (day 17 lead magnet delivery, day 24 weekly digest)",
+        "blogPosts": "4 tactical how-to articles",
+        "paidAds": "Lead magnet promotion, email capture optimized",
+        "influencerTouchpoints": "Guest post exchanges with 2-3 niche experts"
+      },
+      "themeBank": [
+        "Step-by-Step: How to [Achieve Outcome]",
+        "5 Mistakes to Avoid When [Doing Task]",
+        "The Template We Use Internally",
+        "Tool Stack: What We Actually Use",
+        "Quick Wins You Can Implement Today"
+      ]
+    },
+    {
+      "name": "authority",
+      "label": "Authority & Thought Leadership",
+      "days": [29, 42],
+      "goal": "Shift from how-to to why and what-if. Publish original research, contrarian takes, and expert interviews. Drive backlinks and media mentions.",
+      "spokeCadence": {
+        "socialPosts": "1-2 per day, opinion and insight posts",
+        "emailBlasts": "3 total (day 30 research report, day 35 expert interview, day 40 roundup)",
+        "blogPosts": "3 thought-leadership or original research pieces",
+        "paidAds": "Retarget content readers with deeper pieces",
+        "influencerTouchpoints": "Publish 2 expert interview articles, podcast guest appearances"
+      },
+      "themeBank": [
+        "Original Research: We Analyzed [X] Data Points",
+        "Contrarian Take: Why [Popular Advice] Is Wrong",
+        "Expert Interview: [Name] on [Topic]",
+        "The Future of [Industry]: Our Predictions",
+        "Lessons from [Case Study]: What Actually Worked"
+      ]
+    },
+    {
+      "name": "community",
+      "label": "Community & Flywheel",
+      "days": [43, 56],
+      "goal": "Convert readers into community members. Launch UGC initiatives, discussion forums, or contributor programs. Build the content flywheel that runs without you.",
+      "spokeCadence": {
+        "socialPosts": "1 per day, UGC and community features",
+        "emailBlasts": "2 total (day 45 community launch, day 54 retrospective)",
+        "blogPosts": "2 community-contributed or roundup articles",
+        "paidAds": "Minimal — focus on organic and referral",
+        "influencerTouchpoints": "Launch contributor/ambassador program, invite top engaged followers"
+      },
+      "themeBank": [
+        "Community Launch: Join the Conversation",
+        "Reader Spotlight: Your Stories",
+        "Open Call: Contribute to Our Blog",
+        "Monthly Roundup: Best of the Community",
+        "What We Learned: Campaign Retrospective"
+      ]
+    }
+  ]
+}

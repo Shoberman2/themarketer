@@ -1,0 +1,87 @@
+{
+  "name": "Seasonal Sale",
+  "description": "28-day urgency-driven campaign arc for time-limited sales events, holiday promotions, and clearance pushes.",
+  "totalDays": 28,
+  "phases": [
+    {
+      "name": "teaser",
+      "label": "Teaser & Anticipation",
+      "days": [1, 7],
+      "goal": "Hint at the upcoming sale without revealing specifics. Build email list and retargeting audiences. Create FOMO before details drop.",
+      "spokeCadence": {
+        "socialPosts": "1 per day, mystery-themed",
+        "emailBlasts": "1 total (day 5 — 'something big is coming')",
+        "blogPosts": "1 gift guide or seasonal trend piece",
+        "paidAds": "Awareness-only, teaser creative",
+        "influencerTouchpoints": "Seed product boxes to 3-5 creators with NDA"
+      },
+      "themeBank": [
+        "Something Big Is Coming",
+        "Mark Your Calendar",
+        "Sneak Peek: What's in the Box?",
+        "The Countdown Begins",
+        "VIP Early Access Sign-Up"
+      ]
+    },
+    {
+      "name": "buildup",
+      "label": "Buildup & Hype",
+      "days": [8, 14],
+      "goal": "Reveal sale details progressively. Drive VIP/early-access sign-ups. Warm up all channels for launch day.",
+      "spokeCadence": {
+        "socialPosts": "1-2 per day with countdown",
+        "emailBlasts": "2 total (day 9 reveal, day 13 early-access invite)",
+        "blogPosts": "1 buying guide or product roundup",
+        "paidAds": "Retarget site visitors, push email sign-ups",
+        "influencerTouchpoints": "Creators post teaser unboxings"
+      },
+      "themeBank": [
+        "The Big Reveal: Here's What's On Sale",
+        "Best Deals Preview",
+        "Early Access for VIPs Only",
+        "Countdown: 3 Days to Go",
+        "Why This Sale Is Different"
+      ]
+    },
+    {
+      "name": "launch",
+      "label": "Sale Live",
+      "days": [15, 21],
+      "goal": "Maximum conversion pressure. Daily urgency beats. Highlight bestsellers, low stock, and top picks.",
+      "spokeCadence": {
+        "socialPosts": "2-3 per day, product-focused",
+        "emailBlasts": "3 total (day 15 launch, day 18 bestsellers, day 20 reminder)",
+        "blogPosts": "None — all energy on social and email",
+        "paidAds": "Conversion-optimized, dynamic product ads, full budget",
+        "influencerTouchpoints": "Coordinated launch day posts, affiliate links live"
+      },
+      "themeBank": [
+        "Sale Is LIVE — Shop Now",
+        "Bestsellers Selling Fast",
+        "Staff Picks & Must-Haves",
+        "Low Stock Alert",
+        "Bundle Deals You Can't Miss"
+      ]
+    },
+    {
+      "name": "last-chance",
+      "label": "Last Chance & FOMO",
+      "days": [22, 28],
+      "goal": "Final push with maximum urgency. Cart abandonment recovery. Extended deal for email subscribers only. Post-sale wind-down.",
+      "spokeCadence": {
+        "socialPosts": "2 per day with urgency language",
+        "emailBlasts": "3 total (day 22 last chance, day 25 cart recovery, day 28 final hours)",
+        "blogPosts": "1 post-sale recap or thank-you",
+        "paidAds": "Retarget cart abandoners, scale down last 2 days",
+        "influencerTouchpoints": "Final reminder posts, share results/testimonials"
+      },
+      "themeBank": [
+        "Last Chance — Sale Ends Soon",
+        "Final Hours: Don't Miss Out",
+        "Extended 24 Hours for Subscribers",
+        "Cart Reminder: You Left Something Behind",
+        "Thank You — Here's What's Next"
+      ]
+    }
+  ]
+}

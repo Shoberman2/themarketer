@@ -1,0 +1,12 @@
+{
+  "name": "themarketer",
+  "description": "AI marketing agency in your terminal. Daily cadence system, AI-generated content with images, brand voice distillation, campaign arcs, influencer outreach, and performance tracking.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Shoberman2"
+  },
+  "repository": "https://github.com/Shoberman2/themarketer",
+  "keywords": ["marketing", "content", "brand", "campaign", "outreach", "ai"],
+  "commands": ".claude/commands",
+  "license": "MIT"
+}
