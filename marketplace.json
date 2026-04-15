@@ -1,0 +1,24 @@
+{
+  "name": "themarketer",
+  "display_name": "TheMarketer",
+  "description": "AI marketing agency in your terminal. Daily briefs, AI-generated ads, brand voice, campaign arcs, influencer matching — all via slash commands.",
+  "version": "0.4.0",
+  "author": "Shoberman2",
+  "repository": "https://github.com/Shoberman2/themarketer",
+  "license": "MIT",
+  "tags": ["marketing", "content", "ai", "solo-founder", "growth"],
+  "commands": [
+    "/setup",
+    "/market",
+    "/morning-brief",
+    "/create-content",
+    "/brand-voice",
+    "/campaign-arc",
+    "/performance-check",
+    "/influencer-outreach",
+    "/cold-outreach",
+    "/marketing-report",
+    "/marketing-dashboard",
+    "/marketing-ceo-review"
+  ]
+}
